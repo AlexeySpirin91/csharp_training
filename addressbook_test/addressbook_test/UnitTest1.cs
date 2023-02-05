@@ -48,7 +48,7 @@ namespace addressbook_test
             OpenPage(baseURL);
             LoginUser(user.Login, user.Pass);
             GoToChapter();
-            CreateNewelement();
+            CreateNewelEment();
             FillForm(form.Name,form.Header,form.Footer);
             SubmitGroupCreation();
             ReturnTGrouopPage();
@@ -75,7 +75,7 @@ namespace addressbook_test
             driver.FindElement(By.Name("submit")).Click();
         }
 
-        private void CreateNewelement()
+        private void CreateNewelEment()
         {
             driver.FindElement(By.Name("new")).Click();
         }
