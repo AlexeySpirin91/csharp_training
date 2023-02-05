@@ -7,7 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace addressbook_web_test
+namespace addressbook_test
 {
     [TestFixture]
     public class GroupCreateTest
@@ -44,11 +44,12 @@ namespace addressbook_web_test
         public void GroupCreateTests()
         {
             User user = new User("admin", "secret");
+            Form form = new Form("test", "header", "footer");
             OpenPage(baseURL);
             LoginUser(user.Login, user.Pass);
             GoToChapter();
             CreateNewelement();
-            FillForm("test", "test", "test");
+            FillForm(form.Name,form.Header,form.Footer);
             SubmitGroupCreation();
             ReturnTGrouopPage();
         }

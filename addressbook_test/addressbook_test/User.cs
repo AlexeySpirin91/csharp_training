@@ -1,5 +1,5 @@
 ﻿using System;
-namespace addressbook_web_test
+namespace addressbook_test
 {
 	class User
 	{
