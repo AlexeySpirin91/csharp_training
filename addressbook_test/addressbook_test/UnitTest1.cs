@@ -7,7 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace addressbook_web_tests
+namespace addressbook_web_test
 {
     [TestFixture]
     public class GroupCreateTest
@@ -43,8 +43,9 @@ namespace addressbook_web_tests
         [Test]
         public void GroupCreateTests()
         {
+            User user = new User("admin", "secret");
             OpenPage(baseURL);
-            Login("admin", "secret");
+            LoginUser(user.Login, user.Pass);
             GoToChapter();
             CreateNewelement();
             FillForm("test", "test", "test");
@@ -83,7 +84,7 @@ namespace addressbook_web_tests
             driver.FindElement(By.LinkText("groups")).Click();
         }
 
-        private void Login(string login, string pass)
+        private void LoginUser(string login, string pass)
         {
             driver.FindElement(By.Name("user")).Click();
             driver.FindElement(By.Name("user")).SendKeys(login);
