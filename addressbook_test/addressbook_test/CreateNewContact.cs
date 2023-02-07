@@ -10,7 +10,7 @@ using OpenQA.Selenium.Support.UI;
 namespace addressbook_test
 {
     [TestFixture]
-    public class Contact
+    public class CreateContact
     {
         private IWebDriver driver;
         private StringBuilder verificationErrors;
@@ -21,7 +21,7 @@ namespace addressbook_test
         public void SetupTest()
         {
             driver = new FirefoxDriver();
-            baseURL = "https://www.google.com/";
+            baseURL = "http://localhost/addressbook/index.php";
             verificationErrors = new StringBuilder();
         }
 
@@ -42,33 +42,51 @@ namespace addressbook_test
         [Test]
         public void TheContactTest()
         {
-            driver.Navigate().GoToUrl("http://localhost/addressbook/index.php");
-            driver.FindElement(By.Name("user")).Click();
-            driver.FindElement(By.Name("user")).Click();
-            driver.FindElement(By.Name("user")).Click();
-            // ERROR: Caught exception [ERROR: Unsupported command [doubleClick | name=user | ]]
-            driver.FindElement(By.Name("pass")).Click();
-            driver.FindElement(By.Name("pass")).Click();
-            // ERROR: Caught exception [ERROR: Unsupported command [doubleClick | name=pass | ]]
-            driver.FindElement(By.Name("pass")).Click();
-            driver.FindElement(By.Name("pass")).Click();
-            // ERROR: Caught exception [ERROR: Unsupported command [doubleClick | name=pass | ]]
-            driver.FindElement(By.XPath("//input[@value='Login']")).Click();
-            driver.FindElement(By.LinkText("add new")).Click();
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys("Alex");
-            driver.FindElement(By.Name("lastname")).Click();
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys("Spirin");
-            driver.FindElement(By.Name("mobile")).Click();
-            driver.FindElement(By.Name("mobile")).Clear();
-            driver.FindElement(By.Name("mobile")).SendKeys("89236502869");
-            driver.FindElement(By.Name("theform")).Click();
-            driver.FindElement(By.XPath("//div[@id='content']/form/input[21]")).Click();
-            driver.FindElement(By.XPath("//div[@id='nav']/ul/li")).Click();
+            User user = new User("admin", "secret");
+            Contact contact = new Contact("Alexey", "Spirin", "89236502869");
+            OpenPage(baseURL);
+            LoginUser(user.Login, user.Pass);
+            GoToChapter();
+            CreateNewContact(contact.Firstname,contact.Lastname,contact.Mobile);
+            GoToHomePage();
+        }
+
+        private void GoToHomePage()
+        {
             driver.FindElement(By.LinkText("home")).Click();
         }
+
+        private void CreateNewContact(string firstname, string lastname, string mobile)
+        {
+            driver.FindElement(By.Name("firstname")).Clear();
+            driver.FindElement(By.Name("firstname")).SendKeys(firstname);
+            driver.FindElement(By.Name("lastname")).Clear();
+            driver.FindElement(By.Name("lastname")).SendKeys(lastname);
+            driver.FindElement(By.Name("mobile")).Clear();
+            driver.FindElement(By.Name("mobile")).SendKeys(mobile);
+            driver.FindElement(By.Name("theform")).Click();
+            driver.FindElement(By.XPath("//div[@id='content']/form/input[21]")).Click();
+        }
+
+        private void GoToChapter()
+        {
+            driver.FindElement(By.LinkText("add new")).Click();
+        }
+
+        private void LoginUser(string login, string pass)
+        {
+            driver.FindElement(By.Name("user")).Click();
+            driver.FindElement(By.Name("user")).SendKeys(login);
+            driver.FindElement(By.Name("pass")).Clear();
+            driver.FindElement(By.Name("pass")).SendKeys(pass);
+            driver.FindElement(By.XPath("//input[@value='Login']")).Click();
+        }
+
+        private void OpenPage(string url)
+        {
+            driver.Navigate().GoToUrl(url);
+        }
+
         private bool IsElementPresent(By by)
         {
             try
