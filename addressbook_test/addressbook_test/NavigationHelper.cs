@@ -9,15 +9,12 @@ using OpenQA.Selenium.Support.UI;
 
 namespace addressbook_test
 {
-    public class NavigationHelper
+    public class NavigationHelper : HelperBase
 	{
 
-        private IWebDriver driver;
 
-        public NavigationHelper(IWebDriver driver)
-		{
-            this.driver = driver;
-		}
+        public NavigationHelper(IWebDriver driver):base(driver)
+		{}
 
         public void OpenPage(string url)
         {
