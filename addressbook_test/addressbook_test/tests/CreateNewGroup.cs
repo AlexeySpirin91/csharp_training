@@ -12,14 +12,11 @@ namespace addressbook_test
         [Test]
         public void GroupCreateTests()
         {
-            Form form = new Form("test", "header", "footer");
+
             string chapter = "groups";
 
             app.Navigator.GoToChapter(chapter);
-            app.Groups
-                .FillNewElement()
-                .FillForm(form.Name,form.Header,form.Footer)
-                .SubmitGroupCreation();
+            app.Groups.Create();
             app.Navigator.GoToChapter("home");
         }
 

@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Xml.Linq;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -15,10 +16,25 @@ namespace addressbook_test
         public GroupHelper(ApplicationManager manager):base(manager)
 		{}
 
+        public GroupHelper Create()
+        {
+            Form form = new Form("test", "header", "footer");
+
+            FillNewElement();
+            FillForm(form.Name, form.Header, form.Footer);
+            SubmitGroupCreation();
+            return this;
+
+        }
+
         public GroupHelper SubmitGroupCreation()
         {
             driver.FindElement(By.LinkText("groups")).Click();
             return this;
+        }
+
+        internal void RemovalGroup(int num)
+        {
         }
 
         public GroupHelper FillForm(string name, string header, string footer)
@@ -38,6 +54,7 @@ namespace addressbook_test
             driver.FindElement(By.Name("new")).Click();
             return this;
         }
+
     }
 }
 
