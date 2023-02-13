@@ -19,6 +19,7 @@ namespace addressbook_test.tests
             string chapter = "groups";
             int num = 1;
 
+            app.Navigator.GoToChapter(chapter);
             app.Groups.RemovalGroup(num) ;
         }
     }

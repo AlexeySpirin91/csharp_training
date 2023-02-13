@@ -20,11 +20,20 @@ namespace addressbook_test
         {
             Form form = new Form("test", "header", "footer");
 
-            FillNewElement();
+            ChooseAction("new");
             FillForm(form.Name, form.Header, form.Footer);
             SubmitGroupCreation();
             return this;
 
+        }
+
+        internal GroupHelper RemovalGroup(int num)
+        {
+            int index = 3;
+            
+            ChooseElement(3);
+            ChooseAction("delete");
+            return this;
         }
 
         public GroupHelper SubmitGroupCreation()
@@ -33,9 +42,6 @@ namespace addressbook_test
             return this;
         }
 
-        internal void RemovalGroup(int num)
-        {
-        }
 
         public GroupHelper FillForm(string name, string header, string footer)
         {
@@ -49,12 +55,17 @@ namespace addressbook_test
             return this;
         }
 
-        public GroupHelper FillNewElement()
+        public GroupHelper ChooseAction(string action)
         {
-            driver.FindElement(By.Name("new")).Click();
+            driver.FindElement(By.Name(action)).Click();
             return this;
         }
 
+        public GroupHelper ChooseElement(int index)
+        {
+            driver.FindElement(By.XPath($"(//input[@name='selected[]'])["+index+"]")).Click();
+            return this;
+        }
     }
 }
 
