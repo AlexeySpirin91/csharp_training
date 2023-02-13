@@ -23,10 +23,18 @@ namespace addressbook_test
             driver = new FirefoxDriver();
             baseURL = "http://localhost/addressbook/index.php";
 
-            loginHelper = new LoginHelper(driver);
-            navigation = new NavigationHelper(driver);
-            group = new GroupHelper(driver);
-            contacts = new ContactHelper(driver);
+            loginHelper = new LoginHelper(this);
+            navigation = new NavigationHelper(this);
+            group = new GroupHelper(this);
+            contacts = new ContactHelper(this);
+        }
+
+        public IWebDriver Driver
+        {
+            get
+            {
+                return driver;
+            }
         }
 
         public void Stop()

@@ -12,15 +12,16 @@ namespace addressbook_test
 	public class GroupHelper:HelperBase
 	{
 
-        public GroupHelper(IWebDriver driver):base(driver)
+        public GroupHelper(ApplicationManager manager):base(manager)
 		{}
 
-        public void SubmitGroupCreation()
+        public GroupHelper SubmitGroupCreation()
         {
             driver.FindElement(By.LinkText("groups")).Click();
+            return this;
         }
 
-        public void FillForm(string name, string header, string footer)
+        public GroupHelper FillForm(string name, string header, string footer)
         {
             driver.FindElement(By.Name("group_name")).Clear();
             driver.FindElement(By.Name("group_name")).SendKeys(name);
@@ -29,11 +30,13 @@ namespace addressbook_test
             driver.FindElement(By.Name("group_footer")).Clear();
             driver.FindElement(By.Name("group_footer")).SendKeys(footer);
             driver.FindElement(By.Name("submit")).Click();
+            return this;
         }
 
-        public void FillNewElement()
+        public GroupHelper FillNewElement()
         {
             driver.FindElement(By.Name("new")).Click();
+            return this;
         }
     }
 }

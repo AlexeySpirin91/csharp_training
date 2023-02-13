@@ -13,7 +13,7 @@ namespace addressbook_test
 	{
 
 
-        public NavigationHelper(IWebDriver driver):base(driver)
+        public NavigationHelper(ApplicationManager manager):base(manager)
 		{}
 
         public void OpenPage(string url)

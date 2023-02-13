@@ -9,21 +9,19 @@ namespace addressbook_test
     [TestFixture]
     public class GroupCreateTest : TestBase
     {
-        
-
         [Test]
         public void GroupCreateTests()
         {
-            User user = new User("admin", "secret");
             Form form = new Form("test", "header", "footer");
             string chapter = "groups";
-            app.Navigator.OpenPage(app.BaseUrl);
-            app.Auth.LoginUser(user.Login, user.Pass);
+
             app.Navigator.GoToChapter(chapter);
-            app.Groups.FillNewElement();
-            app.Groups.FillForm(form.Name,form.Header,form.Footer);
-            app.Groups.SubmitGroupCreation();
+            app.Groups
+                .FillNewElement()
+                .FillForm(form.Name,form.Header,form.Footer)
+                .SubmitGroupCreation();
             app.Navigator.GoToChapter("home");
         }
+
     }
 }
