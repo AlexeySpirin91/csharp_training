@@ -28,10 +28,8 @@ namespace addressbook_test
         }
 
         internal GroupHelper RemovalGroup(int num)
-        {
-            int index = 3;
-            
-            ChooseElement(3);
+        {            
+            ChooseElement(num);
             ChooseAction("delete");
             return this;
         }
