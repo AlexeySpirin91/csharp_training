@@ -16,30 +16,32 @@ namespace addressbook_test
         public GroupHelper(ApplicationManager manager):base(manager)
 		{}
 
-        public GroupHelper Create()
+        public GroupHelper Create(string name, string header, string footer)
         {
-            Form form = new Form("test", "header", "footer");
+
 
             ChooseAction("new");
-            FillForm(form.Name, form.Header, form.Footer);
+            FillForm(name, header, footer);
             SubmitGroupCreation();
             return this;
 
         }
 
-        internal GroupHelper RemovalGroup(int num)
+        public GroupHelper RemovalGroup(int num)
         {            
             ChooseElement(num);
             ChooseAction("delete");
             return this;
         }
 
-        public GroupHelper SubmitGroupCreation()
+        public GroupHelper Modify(int index, string name, string header, string footer)
         {
-            driver.FindElement(By.LinkText("groups")).Click();
+            ChooseElement(index);
+            ChooseAction("edit");
+            FillForm(name, header, footer);
+            SubmitGroupModification();
             return this;
         }
-
 
         public GroupHelper FillForm(string name, string header, string footer)
         {
@@ -49,8 +51,20 @@ namespace addressbook_test
             driver.FindElement(By.Name("group_header")).SendKeys(header);
             driver.FindElement(By.Name("group_footer")).Clear();
             driver.FindElement(By.Name("group_footer")).SendKeys(footer);
+            return this;
+        }
+
+        public GroupHelper SubmitGroupCreation()
+        {
             driver.FindElement(By.Name("submit")).Click();
             return this;
+        }
+
+        private GroupHelper SubmitGroupModification()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+
         }
 
         public GroupHelper ChooseAction(string action)

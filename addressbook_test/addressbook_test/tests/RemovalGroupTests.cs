@@ -17,10 +17,11 @@ namespace addressbook_test.tests
         public void GroupRemovalTest()
         {
             string chapter = "groups";
-            int num = 1;
+            int num = 5;
 
             app.Navigator.GoToChapter(chapter);
-            app.Groups.RemovalGroup(num) ;
+            app.Groups.RemovalGroup(num);
+            app.Navigator.GoToChapter("home");
         }
     }
 }
