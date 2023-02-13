@@ -15,11 +15,11 @@ namespace addressbook_test
             User user = new User("admin", "secret");
             Contact contact = new Contact("Alexey", "Spirin", "89236502869");
             string chapter = "add new";
-            navigation.OpenPage(baseURL);
-            loginHelper.LoginUser(user.Login, user.Pass);
-            navigation.GoToChapter(chapter);
-            contacts.CreateNewContact(contact.Firstname,contact.Lastname,contact.Mobile);
-            navigation.GoToChapter(chapter);
+            app.Navigator.OpenPage(app.BaseUrl);
+            app.Auth.LoginUser(user.Login, user.Pass);
+            app.Navigator.GoToChapter(chapter);
+            app.Contacts.CreateNewContact(contact.Firstname,contact.Lastname,contact.Mobile);
+            app.Navigator.GoToChapter(chapter);
         }
     }
 }

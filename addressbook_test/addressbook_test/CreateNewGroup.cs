@@ -17,13 +17,13 @@ namespace addressbook_test
             User user = new User("admin", "secret");
             Form form = new Form("test", "header", "footer");
             string chapter = "groups";
-            navigation.OpenPage(baseURL);
-            loginHelper.LoginUser(user.Login, user.Pass);
-            navigation.GoToChapter(chapter);
-            group.FillNewElement();
-            group.FillForm(form.Name,form.Header,form.Footer);
-            group.SubmitGroupCreation();
-            navigation.GoToChapter("home");
+            app.Navigator.OpenPage(app.BaseUrl);
+            app.Auth.LoginUser(user.Login, user.Pass);
+            app.Navigator.GoToChapter(chapter);
+            app.Groups.FillNewElement();
+            app.Groups.FillForm(form.Name,form.Header,form.Footer);
+            app.Groups.SubmitGroupCreation();
+            app.Navigator.GoToChapter("home");
         }
     }
 }
