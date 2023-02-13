@@ -21,5 +21,13 @@
   <ItemGroup>
     <None Remove="Selenium.WebDriver" />
     <None Remove="Selenium.Support" />
+    <None Remove="tests\" />
+    <None Remove="model\" />
+    <None Remove="appmanager\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="tests\" />
+    <Folder Include="model\" />
+    <Folder Include="appmanager\" />
   </ItemGroup>
 </Project>
