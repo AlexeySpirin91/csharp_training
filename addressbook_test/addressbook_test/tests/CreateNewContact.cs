@@ -17,7 +17,9 @@ namespace addressbook_test
             string chapter = "add new";
 
             app.Navigator.GoToChapter(chapter);
-            app.Contacts.CreateNewContact(contact.Firstname,contact.Lastname,contact.Mobile);
+            app.Contacts
+                .FillContactInfo(contact.Firstname, contact.Lastname, contact.Mobile)
+                .ClickEnter();
             app.Navigator.GoToChapter(chapter);
         }
     }

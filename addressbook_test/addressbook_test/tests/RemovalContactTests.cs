@@ -19,7 +19,7 @@ namespace addressbook_test.tests
             int num = 5;
             app.Contacts
                 .ChooseContact(num)
-                .ChooseAction();
+                .DeleteContact();
         }
     }
 }
