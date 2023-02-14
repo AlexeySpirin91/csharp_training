@@ -25,6 +25,19 @@ namespace addressbook_test
             driver.FindElement(By.Name("theform")).Click();
             driver.FindElement(By.XPath("//div[@id='content']/form/input[21]")).Click();
         }
+
+        public ContactHelper ChooseAction()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            driver.SwitchTo().Alert().Accept();
+            return this;
+        }
+
+        public ContactHelper ChooseContact(int num)
+        {
+            driver.FindElement(By.Id(""+num+"")).Click();
+            return this;
+        }
     }
 }
 
