@@ -22,7 +22,6 @@ namespace addressbook_test
             driver.FindElement(By.Name("lastname")).SendKeys(lastname);
             driver.FindElement(By.Name("mobile")).Clear();
             driver.FindElement(By.Name("mobile")).SendKeys(mobile);
-            //driver.FindElement(By.Name("theform")).Click();
             return this;
 
         }
@@ -42,9 +41,9 @@ namespace addressbook_test
 
         }
 
-        public ContactHelper ChooseContact(int num)
+        public ContactHelper ChooseElement(int index)
         {
-            driver.FindElement(By.Id(""+num+"")).Click();
+            driver.FindElement(By.XPath($"(//input[@name='selected[]'])["+index+"]")).Click();
             return this;
         }
 

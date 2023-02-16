@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -17,10 +18,10 @@ namespace addressbook_test.tests
         public void GroupRemovalTest()
         {
             string chapter = "groups";
-            int num = 5;
+            int index = 5;
 
             app.Navigator.GoToChapter(chapter);
-            app.Groups.RemovalGroup(num);
+            app.Groups.RemovalGroup(index);
             app.Navigator.GoToChapter("home");
         }
     }

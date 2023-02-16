@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -27,9 +28,9 @@ namespace addressbook_test
 
         }
 
-        public GroupHelper RemovalGroup(int num)
+        public GroupHelper RemovalGroup(int index)
         {            
-            ChooseElement(num);
+            ChooseElement(index);
             ChooseAction("delete");
             return this;
         }

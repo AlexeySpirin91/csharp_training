@@ -16,9 +16,9 @@ namespace addressbook_test.tests
         [Test]
         public void RemovalContactTest()
         {
-            int num = 5;
+            int index = 5;
             app.Contacts
-                .ChooseContact(num)
+                .ChooseElement(index)
                 .DeleteContact();
         }
     }
