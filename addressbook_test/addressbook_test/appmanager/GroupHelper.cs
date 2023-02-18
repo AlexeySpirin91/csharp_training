@@ -46,14 +46,13 @@ namespace addressbook_test
 
         public GroupHelper FillForm(string name, string header, string footer)
         {
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(name);
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(header);
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(footer);
+            Type(By.Name("group_name"), name);
+            Type(By.Name("group_header"), header);
+            Type(By.Name("group_footer"), footer);
             return this;
         }
+
+
 
         public GroupHelper SubmitGroupCreation()
         {

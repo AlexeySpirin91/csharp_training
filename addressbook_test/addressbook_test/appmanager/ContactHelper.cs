@@ -16,12 +16,9 @@ namespace addressbook_test
 
         public ContactHelper FillContactInfo(string firstname, string lastname, string mobile)
         {
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(firstname);
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(lastname);
-            driver.FindElement(By.Name("mobile")).Clear();
-            driver.FindElement(By.Name("mobile")).SendKeys(mobile);
+            Type(By.Name("firstname"), firstname);
+            Type(By.Name("lastname"), lastname);
+            Type(By.Name("mobile"), mobile);
             return this;
 
         }

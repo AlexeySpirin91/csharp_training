@@ -16,9 +16,10 @@ namespace addressbook_test.tests
         [Test]
         public void GroupModificationTest()
         {
-            Form newData = new Form("new_test", "new_header", "new_footer");
+            Form newData = new Form("new_test", null, "new_footer");
             string chapter = "groups";
-            int index = 2;
+            int index = 3;
+            
 
             app.Navigator.GoToChapter(chapter);
             app.Groups.Modify(index, newData.Name, newData.Header, newData.Footer);

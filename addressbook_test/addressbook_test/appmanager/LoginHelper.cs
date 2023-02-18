@@ -17,10 +17,8 @@ namespace addressbook_test
 
         public void LoginUser(string login, string pass)
         {
-            driver.FindElement(By.Name("user")).Click();
-            driver.FindElement(By.Name("user")).SendKeys(login);
-            driver.FindElement(By.Name("pass")).Clear();
-            driver.FindElement(By.Name("pass")).SendKeys(pass);
+            Type(By.Name("user"), login);
+            Type(By.Name("pass"), pass);
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
         }
     }
