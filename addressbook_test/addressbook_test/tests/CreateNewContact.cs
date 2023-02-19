@@ -14,9 +14,8 @@ namespace addressbook_test
         public void TheContactTest()
         {
             Contact contact = new Contact("Alexey", "Spirin", "89236502868");
-            string chapter = "add new";
 
-            app.Navigator.GoToChapter(chapter);
+            app.Navigator.GoToContactPage();
             app.Contacts
                 .FillContactInfo(contact.Firstname, contact.Lastname, contact.Mobile)
                 .ClickEnter();

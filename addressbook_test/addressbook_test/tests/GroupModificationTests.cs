@@ -17,13 +17,12 @@ namespace addressbook_test
         public void GroupModificationTest()
         {
             Form newData = new Form("new_test", null, "new_footer");
-            string chapter = "groups";
             int index = 3;
 
 
-            app.Navigator.GoToChapter(chapter);
+            app.Navigator.GoToGroupsPage();
             app.Groups.Modify(index, newData.Name, newData.Header, newData.Footer);
-            app.Navigator.GoToChapter("home");
+            app.Navigator.GoToHomePage();
         }
     }
 

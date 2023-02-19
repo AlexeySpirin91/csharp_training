@@ -13,9 +13,8 @@ namespace addressbook_test
         public void GroupCreateTests()
         {
             Form form = new Form("test", "header", "footer");
-            string chapter = "groups";
 
-            app.Navigator.GoToChapter(chapter);
+            app.Navigator.GoToGroupsPage();
             app.Groups.Create(form.Name, form.Header, form.Footer);
         }
 

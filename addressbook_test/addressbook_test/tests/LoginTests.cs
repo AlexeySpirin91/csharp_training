@@ -20,7 +20,7 @@ namespace addressbook_test
             User user = new User("admin", "secret");
             app.Auth.Logout();
             app.Auth.LoginUser(user.Login, user.Pass);
-            Assert.IsTrue(app.Auth.IsLoggedIn(user.Login));
+            Assert.That(app.Auth.IsLoggedIn(user.Login), Is.True);
         }
 
         [Test]
@@ -29,7 +29,7 @@ namespace addressbook_test
             User user = new User("admin", "1234");
             app.Auth.Logout();
             app.Auth.LoginUser(user.Login, user.Pass);
-            Assert.IsFalse(app.Auth.IsLoggedIn(user.Login));
+            Assert.That(app.Auth.IsLoggedIn(user.Login), Is.False);
         }
     }
 
