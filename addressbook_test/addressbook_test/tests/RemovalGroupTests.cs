@@ -17,7 +17,7 @@ namespace addressbook_test
         [Test]
         public void GroupRemovalTest()
         {
-            int index = 5;
+            int index = 1;
 
             app.Navigator.GoToGroupsPage();
             app.Groups.RemovalGroup(index);

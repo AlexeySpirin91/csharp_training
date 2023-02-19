@@ -19,8 +19,6 @@ namespace addressbook_test
 
         public GroupHelper Create(string name, string header, string footer)
         {
-
-
             ChooseAction("new");
             FillForm(name, header, footer);
             SubmitGroupCreation();
@@ -30,18 +28,49 @@ namespace addressbook_test
 
         public GroupHelper RemovalGroup(int index)
         {
-            ChooseElement(index);
-            ChooseAction("delete");
-            return this;
+            if (driver.Url == "http://localhost/addressbook/group.php"
+                && IsElementPresent(By.XPath("//input[@name='selected[]']")))
+            {
+                ChooseElement(index);
+                ChooseAction("delete");
+                return this;
+            }
+            else
+            {
+                Form form = new Form("test", "header", "footer");
+
+                Create(form.Header, form.Name, form.Footer);
+                ChooseElement(index);
+                ChooseAction("delete");
+                return this;
+            }
         }
+               
 
         public GroupHelper Modify(int index, string name, string header, string footer)
         {
-            ChooseElement(index);
-            ChooseAction("edit");
-            FillForm(name, header, footer);
-            SubmitGroupModification();
-            return this;
+            if (driver.Url == "http://localhost/addressbook/group.php"
+                && IsElementPresent(By.XPath("//input[@name='selected[]']")))
+            {
+
+                ChooseElement(index);
+                ChooseAction("edit");
+                FillForm(name, header, footer);
+                SubmitGroupModification();
+                return this;
+            }
+            else
+            {
+                Form form = new Form("test", "header", "footer");
+
+                Create(form.Header,form.Name,form.Footer);
+                ChooseElement(index);
+                ChooseAction("edit");
+                FillForm(name, header, footer);
+                SubmitGroupModification();
+                return this;
+            }
+
         }
 
         public GroupHelper FillForm(string name, string header, string footer)

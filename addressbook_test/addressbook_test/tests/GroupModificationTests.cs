@@ -17,7 +17,7 @@ namespace addressbook_test
         public void GroupModificationTest()
         {
             Form newData = new Form("new_test", null, "new_footer");
-            int index = 3;
+            int index = 1;
 
 
             app.Navigator.GoToGroupsPage();
