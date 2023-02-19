@@ -23,6 +23,7 @@ namespace addressbook_test
             app.Contacts
                 .ChooseElement(index)
                 .DeleteContact();
+            app.Navigator.GoToHomePage();
 
         }
     }

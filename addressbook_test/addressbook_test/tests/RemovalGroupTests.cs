@@ -21,7 +21,8 @@ namespace addressbook_test
 
             app.Navigator.GoToGroupsPage();
             app.Groups.RemovalGroup(index);
-            
+            app.Navigator.GoToHomePage();
+
         }
     }
 }

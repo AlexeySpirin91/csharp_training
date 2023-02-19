@@ -19,6 +19,7 @@ namespace addressbook_test
             app.Contacts
                 .FillContactInfo(contact.Firstname, contact.Lastname, contact.Mobile)
                 .ClickEnter();
+            app.Navigator.GoToHomePage();
         }
     }
 

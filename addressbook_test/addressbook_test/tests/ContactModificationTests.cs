@@ -22,6 +22,7 @@ namespace addressbook_test
                 .ModifyContact()
                 .FillContactInfo(newContact.Firstname, newContact.Lastname, newContact.Mobile)
                 .ClickUpdate();
+            app.Navigator.GoToHomePage();
         }
     }
 

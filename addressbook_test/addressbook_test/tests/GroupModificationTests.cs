@@ -23,6 +23,7 @@ namespace addressbook_test
             app.Navigator.GoToGroupsPage();
             app.Groups.Modify(index, newData.Name, newData.Header, newData.Footer);
             app.Navigator.GoToHomePage();
+            app.Navigator.GoToHomePage();
         }
     }
 
