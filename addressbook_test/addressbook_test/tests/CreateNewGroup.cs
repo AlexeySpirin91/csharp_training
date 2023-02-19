@@ -17,7 +17,6 @@ namespace addressbook_test
 
             app.Navigator.GoToChapter(chapter);
             app.Groups.Create(form.Name,form.Header,form.Footer);
-            app.Navigator.GoToChapter("home");
         }
 
     }

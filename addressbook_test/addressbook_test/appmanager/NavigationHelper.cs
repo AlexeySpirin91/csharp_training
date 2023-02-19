@@ -22,7 +22,7 @@ namespace addressbook_test
         }
         public void GoToChapter(string chapter)
         {
-            driver.FindElement(By.LinkText(chapter)).Click();
+            driver.FindElement(By.XPath($"//a[.='{chapter}']")).Click();
         }
 
     }

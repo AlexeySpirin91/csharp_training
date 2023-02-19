@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
 
-namespace addressbook_test.tests
+namespace addressbook_test
 {
     [TestFixture]
     public class RemovalGroupTests:TestBase
@@ -22,7 +22,7 @@ namespace addressbook_test.tests
 
             app.Navigator.GoToChapter(chapter);
             app.Groups.RemovalGroup(index);
-            app.Navigator.GoToChapter("home");
+            
         }
     }
 }

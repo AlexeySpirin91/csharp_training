@@ -6,87 +6,103 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
-namespace addressbook_test
-{
+using System.Reflection;
+
+namespace addressbook_test;
+
 	public class ApplicationManager
 	{
-        private IWebDriver driver;
-        private string baseURL;
+    private IWebDriver driver;
+    private string baseURL;
 
-        protected LoginHelper loginHelper;
-        protected NavigationHelper navigation;
-        protected GroupHelper group;
-        protected ContactHelper contacts;
+    protected LoginHelper loginHelper;
+    protected NavigationHelper navigation;
+    protected GroupHelper group;
+    protected ContactHelper contacts;
+    private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
-        public ApplicationManager()
+    private ApplicationManager()
 		{
-            driver = new FirefoxDriver();
-            baseURL = "http://localhost/addressbook/index.php";
+        driver = new FirefoxDriver();
+        baseURL = "http://localhost/addressbook/index.php";
 
-            loginHelper = new LoginHelper(this);
-            navigation = new NavigationHelper(this);
-            group = new GroupHelper(this);
-            contacts = new ContactHelper(this);
-        }
-
-        public IWebDriver Driver
+        loginHelper = new LoginHelper(this);
+        navigation = new NavigationHelper(this);
+        group = new GroupHelper(this);
+        contacts = new ContactHelper(this);
+    }
+    
+    ~ApplicationManager()
+    {
+        try
         {
-            get
-            {
-                return driver;
-            }
+            driver.Quit();
         }
-
-        public void Stop()
+        catch (Exception)
         {
-            try
-            {
-                driver.Quit();
-            }
-            catch (Exception)
-            {
-                // Ignore errors if unable to close the browser
-            }
+            // Ignore errors if unable to close the browser
         }
+    }
 
-        public LoginHelper Auth
+    public static ApplicationManager GetInstance()
+    {
+        if (! app.IsValueCreated)
         {
-            get
-            {
-                return loginHelper;
-            }
+
+            ApplicationManager newInstance = new ApplicationManager();
+            newInstance.Navigator.OpenPage(newInstance.BaseUrl);
+            app.Value = newInstance;
+            
+
         }
+        return app.Value;
+    }
 
-        public NavigationHelper Navigator
+    public IWebDriver Driver
+    {
+        get
         {
-            get
-            {
-                return navigation;
-            }
+            return driver;
         }
+    }
 
-        public GroupHelper Groups
+    public LoginHelper Auth
+    {
+        get
         {
-            get
-            {
-                return group;
-            }
+            return loginHelper;
         }
+    }
 
-        public ContactHelper Contacts
+    public NavigationHelper Navigator
+    {
+        get
         {
-            get
-            {
-                return contacts;
-            }
+            return navigation;
         }
+    }
 
-        public string BaseUrl
+    public GroupHelper Groups
+    {
+        get
         {
-            get
-            {
-                return baseURL;
-            }
+            return group;
+        }
+    }
+
+    public ContactHelper Contacts
+    {
+        get
+        {
+            return contacts;
+        }
+    }
+
+    public string BaseUrl
+    {
+        get
+        {
+            return baseURL;
         }
     }
 }

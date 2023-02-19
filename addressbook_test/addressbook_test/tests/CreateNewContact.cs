@@ -12,15 +12,13 @@ namespace addressbook_test
         [Test]
         public void TheContactTest()
         {
-
-            Contact contact = new Contact("Alexey", "Spirin", "89236502869");
+            Contact contact = new Contact("Alexey", "Spirin", "89236502868");
             string chapter = "add new";
 
             app.Navigator.GoToChapter(chapter);
             app.Contacts
                 .FillContactInfo(contact.Firstname, contact.Lastname, contact.Mobile)
                 .ClickEnter();
-            app.Navigator.GoToChapter(chapter);
         }
     }
 }

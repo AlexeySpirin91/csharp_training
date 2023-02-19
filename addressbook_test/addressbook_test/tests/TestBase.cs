@@ -15,16 +15,7 @@ namespace addressbook_test
         [SetUp]
         public void SetupTest()
         {
-            User user = new User("admin", "secret");
-            app = new ApplicationManager();
-            app.Navigator.OpenPage(app.BaseUrl);
-            app.Auth.LoginUser(user.Login, user.Pass);
-        }
-
-        [TearDown]
-        public void TeardownTest()
-        {
-            app.Stop();
+            app = ApplicationManager.GetInstance();
         }
     }
 

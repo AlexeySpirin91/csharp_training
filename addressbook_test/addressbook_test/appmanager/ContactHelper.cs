@@ -46,7 +46,7 @@ namespace addressbook_test
 
         public ContactHelper ModifyContact()
         {
-            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).Click();
+            driver.FindElement(By.XPath("(//table[@id='maintable']/tbody//td//img[@title='Edit'])[1]")).Click();
             return this;
         }
 
