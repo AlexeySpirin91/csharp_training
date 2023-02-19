@@ -6,8 +6,9 @@ using NUnit.Framework;
 
 namespace addressbook_test
 {
+
     [TestFixture]
-    public class CreateContact : TestBase
+    public class CreateContact : AuthTestBase
     {
         [Test]
         public void TheContactTest()
@@ -21,4 +22,5 @@ namespace addressbook_test
                 .ClickEnter();
         }
     }
+
 }

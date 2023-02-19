@@ -7,11 +7,11 @@ using NUnit.Framework;
 namespace addressbook_test
 {
     [TestFixture]
-    public class ContactModificationTests:TestBase
-	{
-		public ContactModificationTests()
-		{
-		}
+    public class ContactModificationTests : AuthTestBase
+    {
+        public ContactModificationTests()
+        {
+        }
 
         [Test]
         public void ContactModificationTest()
@@ -24,5 +24,6 @@ namespace addressbook_test
                 .ClickUpdate();
         }
     }
-}
 
+
+}

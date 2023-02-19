@@ -9,10 +9,10 @@ using OpenQA.Selenium.Support.UI;
 
 namespace addressbook_test
 {
-	public class ContactHelper:HelperBase
-	{
-		public ContactHelper(ApplicationManager manager):base(manager)
-		{}
+    public class ContactHelper : HelperBase
+    {
+        public ContactHelper(ApplicationManager manager) : base(manager)
+        { }
 
         public ContactHelper FillContactInfo(string firstname, string lastname, string mobile)
         {
@@ -40,7 +40,7 @@ namespace addressbook_test
 
         public ContactHelper ChooseElement(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])["+index+"]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
             return this;
         }
 
@@ -56,5 +56,6 @@ namespace addressbook_test
             return this;
         }
     }
-}
 
+
+}

@@ -10,11 +10,11 @@ using OpenQA.Selenium.Support.UI;
 namespace addressbook_test
 {
     public class NavigationHelper : HelperBase
-	{
+    {
 
 
-        public NavigationHelper(ApplicationManager manager):base(manager)
-		{}
+        public NavigationHelper(ApplicationManager manager) : base(manager)
+        { }
 
         public void OpenPage(string url)
         {
@@ -26,5 +26,6 @@ namespace addressbook_test
         }
 
     }
-}
 
+
+}

@@ -11,11 +11,11 @@ using OpenQA.Selenium.Support.UI;
 
 namespace addressbook_test
 {
-	public class GroupHelper:HelperBase
-	{
+    public class GroupHelper : HelperBase
+    {
 
-        public GroupHelper(ApplicationManager manager):base(manager)
-		{}
+        public GroupHelper(ApplicationManager manager) : base(manager)
+        { }
 
         public GroupHelper Create(string name, string header, string footer)
         {
@@ -29,7 +29,7 @@ namespace addressbook_test
         }
 
         public GroupHelper RemovalGroup(int index)
-        {            
+        {
             ChooseElement(index);
             ChooseAction("delete");
             return this;
@@ -75,9 +75,10 @@ namespace addressbook_test
 
         public GroupHelper ChooseElement(int index)
         {
-            driver.FindElement(By.XPath($"(//input[@name='selected[]'])["+index+"]")).Click();
+            driver.FindElement(By.XPath($"(//input[@name='selected[]'])[" + index + "]")).Click();
             return this;
         }
     }
-}
 
+
+}

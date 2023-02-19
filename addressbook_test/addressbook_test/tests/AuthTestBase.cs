@@ -6,18 +6,19 @@ using NUnit.Framework;
 
 namespace addressbook_test
 {
-	[SetUpFixture]
-
-	public class TestSuiteFixture
-	{
-		[OneTimeSetUp]
-		public void InitApplicationManager()
-		{
+    public class AuthTestBase : TestBase
+    {
+        public AuthTestBase()
+        {
+        }
+        [SetUp]
+        public void SetupLogin()
+        {
             User user = new User("admin", "secret");
-            ApplicationManager app = ApplicationManager.GetInstance();
-
             app.Auth.LoginUser(user.Login, user.Pass);
         }
     }
 }
+
+
 

@@ -7,11 +7,11 @@ using NUnit.Framework;
 namespace addressbook_test
 {
     [TestFixture]
-    public class GroupModificationTests:TestBase
-	{
-		public GroupModificationTests()
-		{
-		}
+    public class GroupModificationTests : AuthTestBase
+    {
+        public GroupModificationTests()
+        {
+        }
 
         [Test]
         public void GroupModificationTest()
@@ -26,5 +26,6 @@ namespace addressbook_test
             app.Navigator.GoToChapter("home");
         }
     }
-}
 
+
+}

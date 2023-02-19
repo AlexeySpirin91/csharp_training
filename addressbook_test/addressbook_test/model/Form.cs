@@ -1,17 +1,17 @@
 ﻿using System;
 namespace addressbook_test
 {
-	public class Form
-	{
-		private string name;
-		private string header;
-		private string footer;
-		public Form(string name,string header, string footer)
-		{
-			this.name = name;
-			this.header = header;
-			this.footer = footer;
-		}
+    public class Form
+    {
+        private string name;
+        private string header;
+        private string footer;
+        public Form(string name, string header, string footer)
+        {
+            this.name = name;
+            this.header = header;
+            this.footer = footer;
+        }
         public string Name
         {
             get
@@ -46,5 +46,6 @@ namespace addressbook_test
             }
         }
     }
-}
 
+
+}

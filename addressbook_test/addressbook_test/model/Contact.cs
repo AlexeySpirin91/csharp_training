@@ -3,18 +3,18 @@ using System.Xml.Linq;
 
 namespace addressbook_test
 {
-	public class Contact
-	{
-		private string firstname;
-		private string lastname;
-		private string mobile;
+    public class Contact
+    {
+        private string firstname;
+        private string lastname;
+        private string mobile;
 
         public Contact(string firstname, string lastname, string mobile)
-		{
-			this.firstname = firstname;
-			this.lastname = lastname;
-			this.mobile = mobile;
-		}
+        {
+            this.firstname = firstname;
+            this.lastname = lastname;
+            this.mobile = mobile;
+        }
         public string Firstname
         {
             get
@@ -49,5 +49,6 @@ namespace addressbook_test
             }
         }
     }
-}
 
+
+}
