@@ -40,14 +40,46 @@ namespace addressbook_test
 
         public ContactHelper ChooseElement(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
-            return this;
+            if (driver.Url == "http://localhost/addressbook/index.php"
+                && IsElementPresent(By.XPath("//input[@name='selected[]']")))
+            {
+                driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+                return this;
+            }
+            else
+            {
+                Contact contact = new Contact("Alexey", "Spirin", "89236502868");
+
+                driver.FindElement(By.XPath("//a[.='add new']")).Click();
+                FillContactInfo(contact.Firstname, contact.Lastname, contact.Mobile);
+                ClickEnter();
+                driver.FindElement(By.XPath("//a[.='home']")).Click();
+                driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+                return this;
+            }
+
         }
 
         public ContactHelper ModifyContact()
         {
-            driver.FindElement(By.XPath("(//table[@id='maintable']/tbody//td//img[@title='Edit'])[1]")).Click();
-            return this;
+            if (driver.Url == "http://localhost/addressbook/index.php"
+                && IsElementPresent(By.XPath("//table[@id='maintable']/tbody//td//img[@title='Edit']")))
+            {
+                driver.FindElement(By.XPath("(//table[@id='maintable']/tbody//td//img[@title='Edit'])[1]")).Click();
+                return this;
+            }
+            else
+            {
+                Contact contact = new Contact("Alexey", "Spirin", "89236502868");
+
+                driver.FindElement(By.XPath("//a[.='add new']")).Click();
+                FillContactInfo(contact.Firstname,contact.Lastname,contact.Mobile);
+                ClickEnter();
+                driver.FindElement(By.XPath("//a[.='home']")).Click();
+                driver.FindElement(By.XPath("(//table[@id='maintable']/tbody//td//img[@title='Edit'])[1]")).Click();
+                return this;
+            }
+            
         }
 
         public ContactHelper ClickUpdate()

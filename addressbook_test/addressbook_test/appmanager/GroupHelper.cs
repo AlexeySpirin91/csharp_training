@@ -40,6 +40,7 @@ namespace addressbook_test
                 Form form = new Form("test", "header", "footer");
 
                 Create(form.Header, form.Name, form.Footer);
+                driver.FindElement(By.XPath("//a[.='groups']")).Click();
                 ChooseElement(index);
                 ChooseAction("delete");
                 return this;
@@ -64,10 +65,12 @@ namespace addressbook_test
                 Form form = new Form("test", "header", "footer");
 
                 Create(form.Header,form.Name,form.Footer);
+                driver.FindElement(By.XPath("//a[.='groups']")).Click();
                 ChooseElement(index);
                 ChooseAction("edit");
                 FillForm(name, header, footer);
                 SubmitGroupModification();
+
                 return this;
             }
 

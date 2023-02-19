@@ -44,6 +44,7 @@ namespace addressbook_test
                 && IsElementPresent(By.Name("searchstring")))
                 return;
             driver.FindElement(By.XPath("//a[.='home']")).Click();
+
         }
     }
 }
