@@ -40,7 +40,7 @@ namespace addressbook_test
 
         public ContactHelper ChooseElement(int index)
         {
-            driver.FindElement(By.XPath($"(//input[@name='selected[]'])["+index+"]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])["+index+"]")).Click();
             return this;
         }
 

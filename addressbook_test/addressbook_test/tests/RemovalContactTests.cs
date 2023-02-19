@@ -18,7 +18,7 @@ namespace addressbook_test
         [Test]
         public void RemovalContactTest()
         {
-            int index = 5;
+            int index = 1;
 
             app.Contacts
                 .ChooseElement(index)
