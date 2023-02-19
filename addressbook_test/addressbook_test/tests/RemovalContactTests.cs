@@ -19,7 +19,7 @@ namespace addressbook_test
         public void RemovalContactTest()
         {
             int index = 5;
-            app.Navigator.GoToChapter("home");
+
             app.Contacts
                 .ChooseElement(index)
                 .DeleteContact();
