@@ -17,13 +17,25 @@ namespace addressbook_test
         public void GroupModificationTest()
         {
             Form newData = new Form("new_test", null, "new_footer");
+            Form form = new Form("test_modif", "header_modif", "footer_modif");
             int index = 1;
 
-
             app.Navigator.GoToGroupsPage();
-            app.Groups.Modify(index, newData.Name, newData.Header, newData.Footer);
-            app.Navigator.GoToHomePage();
-            app.Navigator.GoToHomePage();
+
+            if (app.Groups.CheckGroupOnPage())
+            {
+                app.Groups.Modify(index, newData.Name, newData.Header, newData.Footer);
+                app.Navigator.GoToHomePage();
+            }
+            else
+            {
+                app.Groups.Create(form.Name, form.Header, form.Footer);
+                app.Navigator.GoToGroupsPage();
+                app.Groups.Modify(index, newData.Name, newData.Header, newData.Footer);
+                app.Navigator.GoToHomePage();
+            }
+
+
         }
     }
 
