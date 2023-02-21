@@ -20,9 +20,27 @@ namespace addressbook_test
         {
             int index = 1;
 
-            app.Contacts
-                .ChooseElement(index)
-                .DeleteContact();
+            app.Navigator.GoToContactPage();
+
+            if (app.Contacts.CheckContactOnPage())
+            {
+                app.Contacts
+                    .ChooseElement(index)
+                    .DeleteContact();
+            }
+            else
+            {
+                Contact contact = new Contact("Alexey_removal", "Spirin_removal", "89236502868");
+
+                app.Navigator.GoToContactPage();
+                app.Contacts
+                    .FillContactInfo(contact.Firstname, contact.Lastname, contact.Mobile)
+                    .ClickEnter();
+                app.Navigator.GoToHomePage();
+                app.Contacts
+                    .ChooseElement(index)
+                    .DeleteContact();
+            }
             app.Navigator.GoToHomePage();
 
         }
