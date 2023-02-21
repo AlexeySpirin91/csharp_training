@@ -28,23 +28,9 @@ namespace addressbook_test
 
         public GroupHelper RemovalGroup(int index)
         {
-            if (driver.Url == "http://localhost/addressbook/group.php"
-                && IsElementPresent(By.XPath("//input[@name='selected[]']")))
-            {
-                ChooseElement(index);
-                ChooseAction("delete");
-                return this;
-            }
-            else
-            {
-                Form form = new Form("test", "header", "footer");
-
-                Create(form.Header, form.Name, form.Footer);
-                driver.FindElement(By.XPath("//a[.='groups']")).Click();
-                ChooseElement(index);
-                ChooseAction("delete");
-                return this;
-            }
+            ChooseElement(index);
+            ChooseAction("delete");
+            return this;
         }
                
 
@@ -109,6 +95,14 @@ namespace addressbook_test
         {
             driver.FindElement(By.XPath($"(//input[@name='selected[]'])[" + index + "]")).Click();
             return this;
+        }
+
+        public bool CheckGroupOnPage()
+        {
+            if (driver.Url == "http://localhost/addressbook/group.php"
+                && IsElementPresent(By.XPath("//input[@name='selected[]']")))
+                return true;
+            return false;
         }
     }
 

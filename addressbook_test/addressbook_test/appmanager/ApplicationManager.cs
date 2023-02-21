@@ -24,7 +24,7 @@ namespace addressbook_test
         private ApplicationManager()
         {
             driver = new FirefoxDriver();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
             baseURL = "http://localhost/addressbook/index.php";
 
             loginHelper = new LoginHelper(this);
@@ -47,7 +47,7 @@ namespace addressbook_test
 
         public static ApplicationManager GetInstance()
         {
-            if (!app.IsValueCreated)
+            if (! app.IsValueCreated)
             {
 
                 ApplicationManager newInstance = new ApplicationManager();
