@@ -22,13 +22,7 @@ namespace addressbook_test
 
             app.Navigator.GoToContactPage();
 
-            if (app.Contacts.CheckContactOnPage())
-            {
-                app.Contacts
-                    .ChooseElement(index)
-                    .DeleteContact();
-            }
-            else
+            if (!app.Contacts.CheckContactOnPage())
             {
                 Contact contact = new Contact("Alexey_removal", "Spirin_removal", "89236502868");
 
@@ -37,10 +31,12 @@ namespace addressbook_test
                     .FillContactInfo(contact.Firstname, contact.Lastname, contact.Mobile)
                     .ClickEnter();
                 app.Navigator.GoToHomePage();
-                app.Contacts
+            }
+
+            app.Contacts
                     .ChooseElement(index)
                     .DeleteContact();
-            }
+
             app.Navigator.GoToHomePage();
 
         }

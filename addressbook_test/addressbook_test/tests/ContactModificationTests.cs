@@ -16,31 +16,25 @@ namespace addressbook_test
         [Test]
         public void ContactModificationTest()
         {
-            Contact newContact = new Contact("Alexey_new", "Spirin_new", "89236502867");
+            Contact newContact = new Contact("Alexey_new", "Spirin_new", "89236502865");
             Contact contact = new Contact("Alexey_modif", "Spirin_modif", "89236502866");
 
             app.Navigator.GoToHomePage();
 
-            if (app.Contacts.CheckContactOnPage())
-            {
-                app.Contacts
-                .ModifyContact()
-                .FillContactInfo(newContact.Firstname, newContact.Lastname, newContact.Mobile)
-                .ClickUpdate();
-            }
-            else
+            if (!app.Contacts.CheckContactOnPage())
             {
                 app.Navigator.GoToContactPage();
                 app.Contacts
                     .FillContactInfo(contact.Firstname, contact.Lastname, contact.Mobile)
                     .ClickEnter();
                 app.Navigator.GoToHomePage();
-                app.Contacts
+            }
+
+            app.Contacts
                     .ModifyContact()
                     .FillContactInfo(newContact.Firstname, newContact.Lastname, newContact.Mobile)
                     .ClickUpdate();
-            }
-            
+
             app.Navigator.GoToHomePage();
         }
     }
