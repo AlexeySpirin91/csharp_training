@@ -18,21 +18,20 @@ namespace addressbook_test
         public void GroupRemovalTest()
         {
             int index = 1;
-            Form form = new Form("test_removal", "header_removal", "footer_removal");
+            
 
             app.Navigator.GoToGroupsPage();
 
-            if (app.Groups.CheckGroupOnPage())
+            if (!app.Groups.CheckGroupOnPage())
             {
-                app.Groups.RemovalGroup(index);
-                app.Navigator.GoToHomePage();
-            } else
-            {
+                Form form = new Form("test_removal", "header_removal", "footer_removal");
+
                 app.Groups.Create(form.Name, form.Header, form.Footer);
                 app.Navigator.GoToGroupsPage();
-                app.Groups.RemovalGroup(index);
-                app.Navigator.GoToHomePage();
             }
+
+            app.Groups.RemovalGroup(index);
+            app.Navigator.GoToHomePage();
         }
     }
 }

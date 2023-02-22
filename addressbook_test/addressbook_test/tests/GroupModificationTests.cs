@@ -22,19 +22,14 @@ namespace addressbook_test
 
             app.Navigator.GoToGroupsPage();
 
-            if (app.Groups.CheckGroupOnPage())
-            {
-                app.Groups.Modify(index, newData.Name, newData.Header, newData.Footer);
-                app.Navigator.GoToHomePage();
-            }
-            else
+            if (!app.Groups.CheckGroupOnPage())
             {
                 app.Groups.Create(form.Name, form.Header, form.Footer);
                 app.Navigator.GoToGroupsPage();
-                app.Groups.Modify(index, newData.Name, newData.Header, newData.Footer);
-                app.Navigator.GoToHomePage();
             }
 
+            app.Groups.Modify(index, newData.Name, newData.Header, newData.Footer);
+            app.Navigator.GoToHomePage();
 
         }
     }
