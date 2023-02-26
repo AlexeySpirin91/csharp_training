@@ -30,6 +30,7 @@ namespace addressbook_test
         {
             ChooseElement(index);
             ChooseAction("delete");
+            groupCache = null;
             return this;
         }
                
@@ -56,12 +57,14 @@ namespace addressbook_test
         public GroupHelper SubmitGroupCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
+            groupCache = null;
             return this;
         }
 
         private GroupHelper SubmitGroupModification()
         {
             driver.FindElement(By.Name("update")).Click();
+            groupCache = null;
             return this;
 
         }
@@ -86,18 +89,24 @@ namespace addressbook_test
             return false;
         }
 
+        private List<Form> groupCache = null;
+
         public List<Form> GetGroupList()
         {
-            List<Form> groups = new List<Form>();
-            manager.Navigator.GoToGroupsPage();
-            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
-            foreach(IWebElement element in elements)
+            if(groupCache == null)
             {
+                groupCache = new List<Form>();
+                manager.Navigator.GoToGroupsPage();
+                ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+                foreach (IWebElement element in elements)
+                {
 
-                groups.Add(new Form(element.Text, "", ""));
+                    groupCache.Add(new Form(element.Text, "", ""));
+                }
             }
+            
 
-            return groups;
+            return new List<Form>(groupCache);
         }
     }
 
