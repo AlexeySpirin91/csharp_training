@@ -12,7 +12,7 @@ namespace addressbook_test
     public class HelperBase
     {
         protected IWebDriver driver;
-        private ApplicationManager manager;
+        protected ApplicationManager manager;
 
         public HelperBase(ApplicationManager manager)
         {

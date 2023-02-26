@@ -17,7 +17,7 @@ namespace addressbook_test
         [Test]
         public void GroupRemovalTest()
         {
-            int index = 1;
+            int index = 0;
             
 
             app.Navigator.GoToGroupsPage();
@@ -30,7 +30,16 @@ namespace addressbook_test
                 app.Navigator.GoToGroupsPage();
             }
 
+            List<Form> oldGroups = app.Groups.GetGroupList();
+
             app.Groups.RemovalGroup(index);
+
+            List<Form> newGroups = app.Groups.GetGroupList();
+
+            oldGroups.RemoveAt(index);
+
+            Assert.AreEqual(oldGroups, newGroups);
+
             app.Navigator.GoToHomePage();
         }
     }

@@ -36,30 +36,11 @@ namespace addressbook_test
 
         public GroupHelper Modify(int index, string name, string header, string footer)
         {
-            if (driver.Url == "http://localhost/addressbook/group.php"
-                && IsElementPresent(By.XPath("//input[@name='selected[]']")))
-            {
-
-                ChooseElement(index);
-                ChooseAction("edit");
-                FillForm(name, header, footer);
-                SubmitGroupModification();
-                return this;
-            }
-            else
-            {
-                Form form = new Form("test", "header", "footer");
-
-                Create(form.Header,form.Name,form.Footer);
-                driver.FindElement(By.XPath("//a[.='groups']")).Click();
-                ChooseElement(index);
-                ChooseAction("edit");
-                FillForm(name, header, footer);
-                SubmitGroupModification();
-
-                return this;
-            }
-
+            ChooseElement(index);
+            ChooseAction("edit");
+            FillForm(name, header, footer);
+            SubmitGroupModification();
+            return this;
         }
 
         public GroupHelper FillForm(string name, string header, string footer)
@@ -93,7 +74,7 @@ namespace addressbook_test
 
         public GroupHelper ChooseElement(int index)
         {
-            driver.FindElement(By.XPath($"(//input[@name='selected[]'])[" + index + "]")).Click();
+            driver.FindElement(By.XPath($"(//input[@name='selected[]'])[" + (index +1) + "]")).Click();
             return this;
         }
 
@@ -103,6 +84,20 @@ namespace addressbook_test
                 && IsElementPresent(By.XPath("//input[@name='selected[]']")))
                 return true;
             return false;
+        }
+
+        public List<Form> GetGroupList()
+        {
+            List<Form> groups = new List<Form>();
+            manager.Navigator.GoToGroupsPage();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+            foreach(IWebElement element in elements)
+            {
+
+                groups.Add(new Form(element.Text, "", ""));
+            }
+
+            return groups;
         }
     }
 

@@ -18,7 +18,7 @@ namespace addressbook_test
         {
             Form newData = new Form("new_test", null, "new_footer");
             Form form = new Form("test_modif", "header_modif", "footer_modif");
-            int index = 1;
+            int index = 0;
 
             app.Navigator.GoToGroupsPage();
 
@@ -28,7 +28,17 @@ namespace addressbook_test
                 app.Navigator.GoToGroupsPage();
             }
 
+            List<Form> oldGroups = app.Groups.GetGroupList();
             app.Groups.Modify(index, newData.Name, newData.Header, newData.Footer);
+            List<Form> newGroups = app.Groups.GetGroupList();
+
+            oldGroups[index].Name = newData.Name;
+            oldGroups.Sort();
+            newGroups.Sort();
+
+            Assert.AreEqual(oldGroups.Count, newGroups.Count);
+            Assert.AreEqual(oldGroups, newGroups);
+
             app.Navigator.GoToHomePage();
 
         }
