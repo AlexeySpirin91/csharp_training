@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -40,13 +41,13 @@ namespace addressbook_test
 
         public ContactHelper ChooseElement(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index+1) + "]")).Click();
             return this;
         }
 
-        public ContactHelper ModifyContact()
+        public ContactHelper ModifyContact(int index)
         {
-            driver.FindElement(By.XPath("(//table[@id='maintable']/tbody//td//img[@title='Edit'])[1]")).Click();
+            driver.FindElement(By.XPath("(//table[@id='maintable']/tbody//td//img[@title='Edit'])[" + (index+1) + "]")).Click();
             return this;
         }
 
@@ -62,6 +63,20 @@ namespace addressbook_test
                 && IsElementPresent(By.XPath("//table[@id='maintable']/tbody//td//img[@title='Edit']")))
                 return true;
             return false;
+        }
+
+        public List<Contact> GetContactList()
+        {
+            List<Contact> contacts = new List<Contact>();
+            manager.Navigator.GoToHomePage();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("[name='entry']"));
+            foreach (IWebElement element in elements)
+            {
+                string[] contactInfo = element.Text.Split(new char[] { ' ' });
+                contacts.Add(new Contact(contactInfo[1], contactInfo[0], contactInfo[2]));
+            }
+            
+            return contacts;
         }
     }
 

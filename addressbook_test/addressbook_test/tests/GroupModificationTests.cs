@@ -36,7 +36,6 @@ namespace addressbook_test
             oldGroups.Sort();
             newGroups.Sort();
 
-            Assert.AreEqual(oldGroups.Count, newGroups.Count);
             Assert.AreEqual(oldGroups, newGroups);
 
             app.Navigator.GoToHomePage();

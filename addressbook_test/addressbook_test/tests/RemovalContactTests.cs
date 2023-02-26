@@ -18,9 +18,9 @@ namespace addressbook_test
         [Test]
         public void RemovalContactTest()
         {
-            int index = 1;
+            int index = 0;
 
-            app.Navigator.GoToContactPage();
+            app.Navigator.GoToHomePage();
 
             if (!app.Contacts.CheckContactOnPage())
             {
@@ -32,10 +32,19 @@ namespace addressbook_test
                     .ClickEnter();
                 app.Navigator.GoToHomePage();
             }
+            List<Contact> oldContacts = app.Contacts.GetContactList();
 
             app.Contacts
                     .ChooseElement(index)
                     .DeleteContact();
+
+            List<Contact> newContacts = app.Contacts.GetContactList();
+
+            oldContacts.RemoveAt(index);
+            oldContacts.Sort();
+            newContacts.Sort();
+
+            Assert.AreEqual(oldContacts, newContacts);
 
             app.Navigator.GoToHomePage();
 

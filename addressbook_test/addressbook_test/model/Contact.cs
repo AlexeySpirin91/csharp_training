@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 namespace addressbook_test
 {
-    public class Contact
+    public class Contact: IEquatable<Contact>, IComparable<Contact>
     {
         private string firstname;
         private string lastname;
@@ -47,7 +47,38 @@ namespace addressbook_test
             {
                 mobile = value;
             }
+
         }
+
+        public bool Equals(Contact other)
+        {
+            if (Object.ReferenceEquals(other, null))
+                return false;
+            if (Object.ReferenceEquals(this, other))
+                return true;
+            return Firstname == other.Firstname
+                && Lastname == other.Lastname;
+        }
+
+        public override int GetHashCode()
+        {
+            return (Lastname+Firstname).GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return Lastname + Firstname;
+        }
+
+        public int CompareTo(Contact other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return 1;
+            }
+            return (Firstname+Lastname).CompareTo(other.Firstname+other.Lastname);
+        }
+
     }
 
 

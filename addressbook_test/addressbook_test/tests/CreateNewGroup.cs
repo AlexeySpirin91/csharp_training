@@ -18,14 +18,15 @@ namespace addressbook_test
             List<Form> oldGroups = app.Groups.GetGroupList();
             app.Groups.Create(form.Name, form.Header, form.Footer);
             List<Form> newGroups = app.Groups.GetGroupList();
-            app.Navigator.GoToHomePage();
+
 
             oldGroups.Add(form);
             oldGroups.Sort();
             newGroups.Sort();
 
-            Assert.AreEqual(oldGroups.Count, newGroups.Count);
+
             Assert.AreEqual(oldGroups, newGroups);
+            app.Navigator.GoToHomePage();
         }
 
     }

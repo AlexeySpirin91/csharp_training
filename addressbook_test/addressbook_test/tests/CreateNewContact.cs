@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -15,12 +16,24 @@ namespace addressbook_test
         {
             Contact contact = new Contact("Alexey", "Spirin", "89236502868");
 
+            List<Contact> oldContacts = app.Contacts.GetContactList();
             app.Navigator.GoToContactPage();
             app.Contacts
                 .FillContactInfo(contact.Firstname, contact.Lastname, contact.Mobile)
                 .ClickEnter();
+
+            
+            List<Contact> newContacts = app.Contacts.GetContactList();
+
+            oldContacts.Add(contact);
+            oldContacts.Sort();
+            newContacts.Sort();
+
+            Assert.AreEqual(oldContacts, newContacts);
+
             app.Navigator.GoToHomePage();
         }
+
     }
 
 }

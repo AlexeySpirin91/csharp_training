@@ -37,7 +37,8 @@ namespace addressbook_test
             List<Form> newGroups = app.Groups.GetGroupList();
 
             oldGroups.RemoveAt(index);
-
+            oldGroups.Sort();
+            newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
 
             app.Navigator.GoToHomePage();
