@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Xml.Linq;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -77,10 +79,11 @@ namespace addressbook_test
                 contactCache = new List<Contact>();
                 manager.Navigator.GoToHomePage();
                 ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("[name='entry']"));
+
                 foreach (IWebElement element in elements)
                 {
-                    string[] contactInfo = element.Text.Split(new char[] { ' ' });
-                    contactCache.Add(new Contact(contactInfo[1], contactInfo[0], contactInfo[2]));
+                    IList < IWebElement> cells = element.FindElements(By.TagName("td"));
+                    contactCache.Add(new Contact(cells[2].Text, cells[1].Text, cells[5].Text));
                 }
             }
             

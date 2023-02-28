@@ -100,7 +100,6 @@ namespace addressbook_test
                 ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
                 foreach (IWebElement element in elements)
                 {
-
                     groupCache.Add(new Form(element.Text, "", ""));
                 }
             }

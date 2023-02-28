@@ -5,50 +5,16 @@ namespace addressbook_test
 {
     public class Contact: IEquatable<Contact>, IComparable<Contact>
     {
-        private string firstname;
-        private string lastname;
-        private string mobile;
 
         public Contact(string firstname, string lastname, string mobile)
         {
-            this.firstname = firstname;
-            this.lastname = lastname;
-            this.mobile = mobile;
+            Firstname = firstname;
+            Lastname = lastname;
+            Mobile = mobile;
         }
-        public string Firstname
-        {
-            get
-            {
-                return firstname;
-            }
-            set
-            {
-                firstname = value;
-            }
-        }
-        public string Lastname
-        {
-            get
-            {
-                return lastname;
-            }
-            set
-            {
-                lastname = value;
-            }
-        }
-        public string Mobile
-        {
-            get
-            {
-                return mobile;
-            }
-            set
-            {
-                mobile = value;
-            }
-
-        }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+        public string Mobile { get; set; }
 
         public bool Equals(Contact other)
         {
