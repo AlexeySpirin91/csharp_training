@@ -42,7 +42,13 @@ namespace addressbook_test
             {
                 return 1;
             }
-            return (Firstname+Lastname).CompareTo(other.Firstname+other.Lastname);
+
+            if (Lastname == other.Lastname)
+            {
+                return Firstname.CompareTo(other.Firstname);
+            }
+
+            return Lastname.CompareTo(other.Lastname);
         }
 
     }
