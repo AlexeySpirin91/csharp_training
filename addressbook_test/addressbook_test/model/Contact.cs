@@ -5,16 +5,62 @@ namespace addressbook_test
 {
     public class Contact: IEquatable<Contact>, IComparable<Contact>
     {
+        private string allPhone;
+        private string allEmail;
 
-        public Contact(string firstname, string lastname, string mobile)
+        public Contact(string firstname, string lastname)
         {
             Firstname = firstname;
             Lastname = lastname;
-            Mobile = mobile;
         }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-        public string Mobile { get; set; }
+        public string Address { get; set; }
+
+        public string AllPhone {
+            get
+            {
+                if(allPhone != null) { return allPhone; }
+                else
+                {
+                    return (CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone)).Trim();
+                }
+
+            }
+            set
+            {
+                allPhone = value;
+            }
+        }
+        public string HomePhone { get; set; }
+        public string MobilePhone { get; set; }
+        public string WorkPhone { get; set; }
+
+        public string AllEmail {
+            get
+            {
+                if (allEmail != null) { return allEmail; }
+                else
+                {
+                    return (Email +"\n" + Email2 + "\n" + Email3).Trim();
+                }
+
+            }
+            set
+            {
+                allEmail = value;
+            }
+        }
+        public string Email { get; set; }
+        public string Email2 { get; set; }
+        public string Email3 { get; set; }
+
+        private string CleanUp(string phone)
+        {
+            if (phone == null || phone =="")
+                return "";
+            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "")+"\n";
+        }
 
         public bool Equals(Contact other)
         {

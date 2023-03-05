@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
@@ -31,8 +32,14 @@ namespace addressbook_test
         public bool IsLoggedIn(string login)
         {
             return IsLoggedIn()
-                && driver.FindElement(By.Name("logout")).FindElement(By.TagName("b")).Text
-                == "(" + login + ")";
+                && GetLoggetUserName() == login;
+                
+        }
+
+        public string GetLoggetUserName()
+        {
+            string text = driver.FindElement(By.Name("logout")).FindElement(By.TagName("b")).Text;
+            return text.Substring(1, text.Length - 2);
         }
 
         public bool IsLoggedIn()

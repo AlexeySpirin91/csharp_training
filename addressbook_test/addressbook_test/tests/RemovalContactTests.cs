@@ -24,11 +24,11 @@ namespace addressbook_test
 
             if (!app.Contacts.CheckContactOnPage())
             {
-                Contact contact = new Contact("Alexey_removal", "Spirin_removal", "89236502868");
+                Contact contact = new Contact("Alexey_removal", "Spirin_removal");
 
                 app.Navigator.GoToContactPage();
                 app.Contacts
-                    .FillContactInfo(contact.Firstname, contact.Lastname, contact.Mobile)
+                    .FillContactInfo(contact.Firstname, contact.Lastname)
                     .ClickEnter();
                 app.Navigator.GoToHomePage();
             }

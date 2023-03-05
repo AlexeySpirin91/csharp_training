@@ -14,12 +14,12 @@ namespace addressbook_test
         [Test]
         public void TheContactTest()
         {
-            Contact contact = new Contact("Alexey", "Spirin", "89236502868");
+            Contact contact = new Contact("Alexey", "Spirin");
 
             List<Contact> oldContacts = app.Contacts.GetContactList();
             app.Navigator.GoToContactPage();
             app.Contacts
-                .FillContactInfo(contact.Firstname, contact.Lastname, contact.Mobile)
+                .FillContactInfo(contact.Firstname, contact.Lastname)
                 .ClickEnter();
 
             

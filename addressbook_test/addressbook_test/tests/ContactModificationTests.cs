@@ -17,8 +17,8 @@ namespace addressbook_test
         public void ContactModificationTest()
         {
             int index = 0;
-            Contact newContact = new Contact("Alexey_new", "Spirin_new", "89236502864");
-            Contact contact = new Contact("Alexey_modif", "Spirin_modif", "89236502866");
+            Contact newContact = new Contact("Alexey_new", "Spirin_new");
+            Contact contact = new Contact("Alexey_modif", "Spirin_modif");
 
             app.Navigator.GoToHomePage();
 
@@ -26,7 +26,7 @@ namespace addressbook_test
             {
                 app.Navigator.GoToContactPage();
                 app.Contacts
-                    .FillContactInfo(contact.Firstname, contact.Lastname, contact.Mobile)
+                    .FillContactInfo(contact.Firstname, contact.Lastname)
                     .ClickEnter();
                 app.Navigator.GoToHomePage();
             }
@@ -34,7 +34,7 @@ namespace addressbook_test
             List<Contact> oldContacts = app.Contacts.GetContactList();
             app.Contacts
                     .ModifyContact(index)
-                    .FillContactInfo(newContact.Firstname, newContact.Lastname, newContact.Mobile)
+                    .FillContactInfo(newContact.Firstname, newContact.Lastname)
                     .ClickUpdate();
 
 
