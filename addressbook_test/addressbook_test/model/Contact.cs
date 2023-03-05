@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
@@ -8,16 +9,37 @@ namespace addressbook_test
     {
         private string allPhone;
         private string allEmail;
+        private string alldata;
 
         public Contact(string firstname, string lastname)
         {
             Firstname = firstname;
             Lastname = lastname;
         }
+        public string Alldata
+        {
+            get
+            {
+                if (alldata != null) { return alldata; }
+                else
+                {
+                    string fioAndAdress = Firstname + Lastname + Address;
+                    string data = (fioAndAdress + allPhone + allEmail).Trim();
+                        
+                    return Regex.Replace(data, "[ -()\n]", "") ;
+                }
+
+            }
+            set
+            {
+                alldata = value;
+            }
+        }
+
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Address { get; set; }
-
+        
         public string AllPhone {
             get
             {

@@ -13,9 +13,10 @@ namespace addressbook_test
         [Test]
         public void TestContactInformation()
         {
+            int index = 0;
             app.Navigator.GoToContactPage();
-            Contact fromTable = app.Contacts.GetContactInformationFromTable(0);
-            Contact fromForm = app.Contacts.GetContactInformationFromForm(0);
+            Contact fromTable = app.Contacts.GetContactInformationFromTable(index);
+            Contact fromForm = app.Contacts.GetContactInformationFromForm(index);
 
             Assert.AreEqual(fromTable, fromForm);
             Assert.AreEqual(fromTable.Address, fromForm.Address);

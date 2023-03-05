@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -139,6 +140,16 @@ namespace addressbook_test
                 Email2 = email2,
                 Email3 = email3
             };
+        }
+
+        public string GetContactInformationFromDetails(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            driver.FindElements(By.Name("entry"))[index].FindElements(By.TagName("td"))[6]
+            .FindElement(By.TagName("a")).Click();
+
+            string allData = (driver.FindElement(By.Id("content")).Text).Trim();
+            return Regex.Replace(allData, "[ -()HMW:\n]", "");
         }
     }
 
