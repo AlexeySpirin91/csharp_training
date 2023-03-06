@@ -17,9 +17,6 @@ namespace addressbook_test
             Contact fromTable = app.Contacts.GetContactInformationFromTable(0);
             string fromDetails = app.Contacts.GetContactInformationFromDetails(0);
 
-            Console.WriteLine(fromTable.Alldata);
-            Console.WriteLine(fromDetails);
-
             Assert.AreEqual(fromTable.Alldata, fromDetails);
         }
 	}
