@@ -23,10 +23,12 @@ namespace addressbook_test
                 if (alldata != null) { return alldata; }
                 else
                 {
-                    string fioAndAdress = Firstname + Lastname + Address;
-                    string data = (fioAndAdress + allPhone + allEmail).Trim();
-                        
-                    return Regex.Replace(data, "[ -()\n]", "") ;
+                    string fio = Firstname + Lastname + "\n";
+                    string data = (fio + Address + "\n" + "\n" + allPhone
+                        + "\n" + "\n" + allEmail).Trim();
+
+
+                    return Regex.Replace(data, "[ -()]", "") ;
                 }
 
             }

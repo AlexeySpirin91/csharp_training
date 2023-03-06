@@ -149,7 +149,7 @@ namespace addressbook_test
             .FindElement(By.TagName("a")).Click();
 
             string allData = (driver.FindElement(By.Id("content")).Text).Trim();
-            return Regex.Replace(allData, "[ -()HMW:\n]", "");
+            return Regex.Replace(allData, "[ -()HMW:]", "");
         }
     }
 
