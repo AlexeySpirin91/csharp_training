@@ -16,7 +16,7 @@ namespace addressbook_test
         [Test]
         public void ContactModificationTest()
         {
-            int index = 0;
+            int index = 1;
             Contact newContact = new Contact("Alexey_new", "Spirin_new");
             Contact contact = new Contact("Alexey_modif", "Spirin_modif");
 

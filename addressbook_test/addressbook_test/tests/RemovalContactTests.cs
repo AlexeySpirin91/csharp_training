@@ -18,7 +18,7 @@ namespace addressbook_test
         [Test]
         public void RemovalContactTest()
         {
-            int index = 0;
+            int index = 2;
 
             app.Navigator.GoToHomePage();
 

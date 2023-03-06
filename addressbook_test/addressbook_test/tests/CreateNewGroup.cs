@@ -9,10 +9,21 @@ namespace addressbook_test
     [TestFixture]
     public class GroupCreateTest : AuthTestBase
     {
-        [Test]
-        public void GroupCreateTests()
+        public static IEnumerable<Form> RandomGroupDataProvider()
         {
-            Form form = new Form("atest", "header", "footer");
+            List<Form> groups = new List<Form>();
+            for (int i = 0; i < 5; i++)
+            {
+                groups.Add(new Form(GenerateRandomString(50), GenerateRandomString(60), GenerateRandomString(30)));
+            }
+            return groups;
+;        }
+
+
+
+        [Test, TestCaseSource("RandomGroupDataProvider")]
+        public void GroupCreateTests(Form form)
+        {
 
             app.Navigator.GoToGroupsPage();
             List<Form> oldGroups = app.Groups.GetGroupList();

@@ -30,7 +30,7 @@ namespace addressbook_test
 
         public override string ToString()
         {
-            return "name=" + Name;
+            return "name=" + Name + "\\nheader= " + Header + "\\nfooter" + Footer;
         }
 
         public int CompareTo(Form other)
