@@ -10,6 +10,8 @@ namespace addressbook_test
         private string allPhone;
         private string allEmail;
         private string alldata;
+        private string address;
+
 
         public Contact(string firstname, string lastname)
         {
@@ -24,8 +26,7 @@ namespace addressbook_test
                 else
                 {
                     string fio = Firstname + Lastname + "\n";
-                    string data = (fio + Address + "\n" + "\n" + allPhone
-                        + "\n" + "\n" + allEmail).Trim();
+                    string data = (fio + Address  + "\n" + AllPhone + AllEmail).Trim();
 
 
                     return Regex.Replace(data, "[ -()]", "") ;
@@ -40,15 +41,26 @@ namespace addressbook_test
 
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-        public string Address { get; set; }
+        public string Address
+        {
+            get
+            {
+                if (address == "") { return ""; }
+                else { return address + "\n"; }
+            }
+            set
+            {
+                address = value;
+            }
+        }
         
         public string AllPhone {
             get
             {
-                if(allPhone != null) { return allPhone; }
-                else
+                if(allPhone == ""){ return ""; }
+                else if (allPhone != null) { return allPhone + "\n\n"; }
                 {
-                    return (CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone)).Trim();
+                    return (CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone) + "\n").Trim();
                 }
 
             }
@@ -60,7 +72,6 @@ namespace addressbook_test
         public string HomePhone { get; set; }
         public string MobilePhone { get; set; }
         public string WorkPhone { get; set; }
-
         public string AllEmail {
             get
             {
@@ -84,7 +95,7 @@ namespace addressbook_test
         {
             if (phone == null || phone =="")
                 return "";
-            return Regex.Replace(phone,"[ -()]", "") +"\n";
+            return Regex.Replace(phone, "[ -()]", "") + "\n";
         }
 
         public bool Equals(Contact other)

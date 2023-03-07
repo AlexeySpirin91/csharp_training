@@ -14,8 +14,8 @@ namespace addressbook_test
 		{
             int index = 0;
             app.Navigator.GoToContactPage();
-            Contact fromTable = app.Contacts.GetContactInformationFromTable(0);
-            string fromDetails = app.Contacts.GetContactInformationFromDetails(0);
+            Contact fromTable = app.Contacts.GetContactInformationFromTable(index);
+            string fromDetails = app.Contacts.GetContactInformationFromDetails(index);
 
             Assert.AreEqual(fromTable.Alldata, fromDetails);
         }

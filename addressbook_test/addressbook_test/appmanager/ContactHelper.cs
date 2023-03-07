@@ -148,8 +148,9 @@ namespace addressbook_test
             driver.FindElements(By.Name("entry"))[index].FindElements(By.TagName("td"))[6]
             .FindElement(By.TagName("a")).Click();
 
-            string allData = (driver.FindElement(By.Id("content")).Text).Trim();
-            return Regex.Replace(allData, "[ -()HMW:]", "");
+            string allData = ((driver.FindElement(By.Id("content")).Text)
+                .Trim()).Replace("M:","").Replace("H:","").Replace("W:","");
+            return Regex.Replace(allData, "[ -()]", "");
         }
     }
 
