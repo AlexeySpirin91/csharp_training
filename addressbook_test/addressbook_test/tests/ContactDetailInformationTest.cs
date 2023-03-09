@@ -12,12 +12,14 @@ namespace addressbook_test
         [Test]
         public void TestContactDetailInformationTest()
 		{
-            int index = 0;
+            int index = 3;
             app.Navigator.GoToContactPage();
-            Contact fromTable = app.Contacts.GetContactInformationFromTable(index);
+            string fromForm = app.Contacts.GetContactInformationFromFormForDetails(index);
             string fromDetails = app.Contacts.GetContactInformationFromDetails(index);
 
-            Assert.AreEqual(fromTable.Alldata, fromDetails);
+            Console.WriteLine(fromForm);
+
+            Assert.AreEqual(fromForm, fromDetails);
         }
 	}
 }

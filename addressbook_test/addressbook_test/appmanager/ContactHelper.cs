@@ -148,11 +148,67 @@ namespace addressbook_test
             driver.FindElements(By.Name("entry"))[index].FindElements(By.TagName("td"))[6]
             .FindElement(By.TagName("a")).Click();
 
-            string allData = ((driver.FindElement(By.Id("content")).Text)
-                .Trim()).Replace("M:","").Replace("H:","").Replace("W:","");
-            return Regex.Replace(allData, "[ -()]", "");
+            string allData = (driver.FindElement(By.Id("content")).Text);
+            return allData;
+        }
+
+        public string GetContactInformationFromFormForDetails(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            ModifyContact(index);
+            string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
+            string address = driver.FindElement(By.Name("address")).GetAttribute("value");
+
+            string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
+            string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
+            string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
+
+            string email = driver.FindElement(By.Name("email")).GetAttribute("value");
+            string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
+            string email3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
+
+            string fio;
+            if (firstName == "" && lastName == "")
+                fio = "";
+            else if (firstName != "" && lastName == "")
+                fio =  firstName + "\n";
+            else if (firstName == "" && lastName != "")
+                fio = lastName + "\n";
+            else
+                fio = firstName + " " + lastName + "\n";
+
+            if (homePhone != "")
+                homePhone = "H: " + homePhone + "\n";
+            if (mobilePhone != "")
+                mobilePhone = "M: " + mobilePhone + "\n";
+            if (workPhone != "")
+                workPhone = "W: " + workPhone + "\n";
+
+            if (email != "" && email2 != "" && email3 != "")
+                email = email + "\n";
+            if (email2 != "" && email3 != "")
+                email2 = email2 + "\n";
+
+            string allPhones = homePhone + mobilePhone + workPhone;
+            string allEmails = email + email2 + email3;
+
+            if (address == "" && (allPhones !="" || allEmails !=""))
+                address = "\n";
+            else if (address == "" && allPhones == "" && allEmails == "")
+                address = "";
+            else address = address + "\n\n";
+
+            if (allPhones != "" && allEmails != "") { allPhones = allPhones + "\n"; }
+            if (allPhones != "" && allEmails == "") { allPhones = allPhones.Substring(0, allPhones.Length - 1); }
+            if (address =="" && allPhones == "" && allEmails == "") { fio = fio.Substring(0, fio.Length - 1); }
+
+            string info = fio + address + allPhones + allEmails;
+
+            return info;
         }
     }
 
 
 }
+

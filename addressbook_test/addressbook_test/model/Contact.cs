@@ -18,26 +18,7 @@ namespace addressbook_test
             Firstname = firstname;
             Lastname = lastname;
         }
-        public string Alldata
-        {
-            get
-            {
-                if (alldata != null) { return alldata; }
-                else
-                {
-                    string fio = Firstname + Lastname + "\n";
-                    string data = (fio + Address  + "\n" + AllPhone + AllEmail).Trim();
-
-
-                    return Regex.Replace(data, "[ -()]", "") ;
-                }
-
-            }
-            set
-            {
-                alldata = value;
-            }
-        }
+       
 
         public string Firstname { get; set; }
         public string Lastname { get; set; }
