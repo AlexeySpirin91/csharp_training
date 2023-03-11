@@ -1,0 +1,19 @@
+﻿
+using addressbook_test;
+
+namespace addressbook_test_data_generators
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int count = Convert.ToInt32(args[0]);
+            StreamWriter writer = new StreamWriter(args[1]);
+            for(int i = 0; i < count; i++)
+            {
+                writer.WriteLine($"{TestBase.GenerateRandomString(10)},{TestBase.GenerateRandomString(10)},{TestBase.GenerateRandomString(10)}");
+            }
+            writer.Close();
+        }
+    }
+}

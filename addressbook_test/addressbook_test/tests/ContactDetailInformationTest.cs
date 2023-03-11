@@ -12,7 +12,7 @@ namespace addressbook_test
         [Test]
         public void TestContactDetailInformationTest()
 		{
-            int index = 3;
+            int index = 2;
             app.Navigator.GoToContactPage();
             string fromForm = app.Contacts.GetContactInformationFromFormForDetails(index);
             string fromDetails = app.Contacts.GetContactInformationFromDetails(index);

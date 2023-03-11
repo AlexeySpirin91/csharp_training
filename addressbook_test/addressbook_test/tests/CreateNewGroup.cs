@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -19,9 +20,21 @@ namespace addressbook_test
             return groups;
 ;        }
 
+        public static IEnumerable<Form> GroupDataFromFile()
+        {
+            List<Form> groups = new List<Form>();
+            string[] lines = File.ReadAllLines(@"groups.csv");
+            foreach(string l in lines)
+            {
+                string[]  parts = l.Split(',');
+                groups.Add(new Form(parts[0], parts[1], parts[2]));
+            }
+
+            return groups;
+        }
 
 
-        [Test, TestCaseSource("RandomGroupDataProvider")]
+        [Test, TestCaseSource("GroupDataFromFile")]
         public void GroupCreateTests(Form form)
         {
 
