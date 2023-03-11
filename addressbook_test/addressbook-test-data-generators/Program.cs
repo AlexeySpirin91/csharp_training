@@ -1,4 +1,8 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using addressbook_test;
 
 namespace addressbook_test_data_generators
@@ -11,7 +15,10 @@ namespace addressbook_test_data_generators
             StreamWriter writer = new StreamWriter(args[1]);
             for(int i = 0; i < count; i++)
             {
-                writer.WriteLine($"{TestBase.GenerateRandomString(10)},{TestBase.GenerateRandomString(10)},{TestBase.GenerateRandomString(10)}");
+                writer.WriteLine(String.Format("{0},{1},{2}",
+                    TestBase.GenerateRandomString(10),
+                    TestBase.GenerateRandomString(10),
+                    TestBase.GenerateRandomString(10)));
             }
             writer.Close();
         }
