@@ -3,6 +3,7 @@ namespace addressbook_test
 {
     public class Form:IEquatable<Form>, IComparable<Form>
     {
+        public Form() { }
         public Form(string name, string header, string footer)
         {
             Name = name;

@@ -12,6 +12,13 @@ namespace addressbook_test
         private string alldata;
         private string address;
 
+        public Contact() { }
+        public Contact(string firstname, string lastname,string mobilePhone)
+        {
+            Firstname = firstname;
+            Lastname = lastname;
+            MobilePhone = mobilePhone;
+        }
 
         public Contact(string firstname, string lastname)
         {

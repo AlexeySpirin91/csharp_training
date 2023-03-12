@@ -11,4 +11,12 @@
   <ItemGroup>
     <ProjectReference Include="..\addressbook_test\addressbook_test.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="Microsoft.Office.Interop.Excel" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Microsoft.Office.Interop.Excel" Version="15.0.4795.1001" />
+  </ItemGroup>
 </Project>
