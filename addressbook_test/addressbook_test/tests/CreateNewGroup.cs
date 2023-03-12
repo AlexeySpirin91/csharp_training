@@ -4,6 +4,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
+using System.Xml;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace addressbook_test
 {
@@ -20,7 +23,7 @@ namespace addressbook_test
             return groups;
 ;        }
 
-        public static IEnumerable<Form> GroupDataFromFile()
+        public static IEnumerable<Form> GroupDataFromCsvFile()
         {
             List<Form> groups = new List<Form>();
             string[] lines = File.ReadAllLines(@"groups.csv");
@@ -33,8 +36,21 @@ namespace addressbook_test
             return groups;
         }
 
+        public static IEnumerable<Form> GroupDataFromXmlFile()
+        {
+            return (List<Form>)
+                new XmlSerializer(typeof(List<Form>))
+                .Deserialize(new StreamReader(@"groups.xml"));
+        }
 
-        [Test, TestCaseSource("GroupDataFromFile")]
+        public static IEnumerable<Form> GroupDataFromJsonFile()
+        {
+            return JsonConvert.DeserializeObject<List<Form>>(
+                File.ReadAllText(@"groups.json"));
+        }
+
+
+        [Test, TestCaseSource("GroupDataFromJsonFile")]
         public void GroupCreateTests(Form form)
         {
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfContact xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Contact>
+    <Firstname>tWS¼ĖÐI</Firstname>
+    <Lastname>¶Xâú</Lastname>
+    <Address>
+</Address>
+    <AllPhone>ćĀ</AllPhone>
+    <MobilePhone>ćĀ</MobilePhone>
+    <AllEmail />
+  </Contact>
+  <Contact>
+    <Firstname>\å`N</Firstname>
+    <Lastname>Süý®ÓúOĐ</Lastname>
+    <Address>
+</Address>
+    <AllPhone>»_XÙCÎ</AllPhone>
+    <MobilePhone>»_XÙCÎ</MobilePhone>
+    <AllEmail />
+  </Contact>
+</ArrayOfContact>

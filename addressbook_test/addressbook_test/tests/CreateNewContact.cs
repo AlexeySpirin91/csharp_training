@@ -3,6 +3,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Xml;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace addressbook_test
@@ -23,7 +26,21 @@ namespace addressbook_test
             ;
         }
 
-        [Test, TestCaseSource("RandomContactDataProvider")]
+        public static IEnumerable<Contact> ContactDataFromXmlFile()
+        {
+            return (List<Contact>)
+                new XmlSerializer(typeof(List<Contact>))
+                .Deserialize(new StreamReader(@"contacts.xml"));
+
+        }
+
+        public static IEnumerable<Contact> GroupDataFromJsonFile()
+        {
+            return JsonConvert.DeserializeObject<List<Contact>>(
+                File.ReadAllText(@"contacts.json"));
+        }
+
+        [Test, TestCaseSource("GroupDataFromJsonFile")]
         public void TheContactTest(Contact contact)
         {
 
