@@ -53,8 +53,8 @@ namespace addressbook_test_data_generators
                     else
                     {
                         System.Console.Out.Write("Unrecognized format: " + format);
-                        writer.Close();
                     }
+                    writer.Close();
                 }
             }
             else if(type == "contacts")
@@ -82,13 +82,14 @@ namespace addressbook_test_data_generators
                     }
                     else if (format == "json")
                     {
-                        WriteGroupsToJsonlFile(forms, writer);
+                        WriteContactsToJsonlFile(contacts, writer);
                     }
                     else
                     {
                         System.Console.Out.Write("Unrecognized format: " + format);
-                        writer.Close();
                     }
+
+                    writer.Close();
                 }
             }
             else

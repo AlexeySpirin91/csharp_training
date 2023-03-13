@@ -34,13 +34,13 @@ namespace addressbook_test
 
         }
 
-        public static IEnumerable<Contact> GroupDataFromJsonFile()
+        public static IEnumerable<Contact> ContactDataFromJsonFile()
         {
             return JsonConvert.DeserializeObject<List<Contact>>(
                 File.ReadAllText(@"contacts.json"));
         }
 
-        [Test, TestCaseSource("GroupDataFromJsonFile")]
+        [Test, TestCaseSource("ContactDataFromJsonFile")]
         public void TheContactTest(Contact contact)
         {
 
