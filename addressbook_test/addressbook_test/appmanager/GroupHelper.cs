@@ -33,7 +33,23 @@ namespace addressbook_test
             groupCache = null;
             return this;
         }
-               
+
+        public GroupHelper Remove(Form form)
+        {
+            ChooseElement(form.Id);
+            ChooseAction("delete");
+            groupCache = null;
+            return this;
+        }
+
+        internal GroupHelper Modify(Form form, string name, string header, string footer)
+        {
+            ChooseElement(form.Id);
+            ChooseAction("edit");
+            FillForm(name, header, footer);
+            SubmitGroupModification();
+            return this;
+        }
 
         public GroupHelper Modify(int index, string name, string header, string footer)
         {
@@ -81,6 +97,12 @@ namespace addressbook_test
             return this;
         }
 
+        public GroupHelper ChooseElement(string id)
+        {
+            driver.FindElement(By.XPath($"(//input[@name='selected[]' and @value='"+id+"'])")).Click();
+            return this;
+        }
+
         public bool CheckGroupOnPage()
         {
             if (driver.Url == "http://localhost/addressbook/group.php"
@@ -90,6 +112,7 @@ namespace addressbook_test
         }
 
         private List<Form> groupCache = null;
+        private List<string> groupNameCache = null;
 
         public List<Form> GetGroupList()
         {
@@ -106,6 +129,23 @@ namespace addressbook_test
             
 
             return new List<Form>(groupCache);
+        }
+
+        public List<string> GetGroupNameList()
+        {
+            if (groupNameCache == null)
+            {
+                groupNameCache = new List<string>();
+                manager.Navigator.GoToGroupsPage();
+                ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+                foreach (IWebElement element in elements)
+                {
+                    groupNameCache.Add(element.Text);
+                }
+            }
+
+
+            return new List<string>(groupNameCache);
         }
     }
 

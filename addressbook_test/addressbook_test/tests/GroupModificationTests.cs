@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace addressbook_test
 {
     [TestFixture]
-    public class GroupModificationTests : AuthTestBase
+    public class GroupModificationTests : GroupTestBase
     {
         public GroupModificationTests()
         {
@@ -16,7 +16,7 @@ namespace addressbook_test
         [Test]
         public void GroupModificationTest()
         {
-            Form newData = new Form("new_test", null, "new_footer");
+            Form newData = new Form("new_test_ololo", null, "new_footer");
             Form form = new Form("test_modif", "header_modif", "footer_modif");
             int index = 0;
 
@@ -28,9 +28,10 @@ namespace addressbook_test
                 app.Navigator.GoToGroupsPage();
             }
 
-            List<Form> oldGroups = app.Groups.GetGroupList();
-            app.Groups.Modify(index, newData.Name, newData.Header, newData.Footer);
-            List<Form> newGroups = app.Groups.GetGroupList();
+            List<Form> oldGroups = Form.GetAll();
+            Form toBeModify = oldGroups[index];
+            app.Groups.Modify(toBeModify, newData.Name, newData.Header, newData.Footer);
+            List<Form> newGroups = Form.GetAll();
 
             oldGroups[index].Name = newData.Name;
             oldGroups.Sort();

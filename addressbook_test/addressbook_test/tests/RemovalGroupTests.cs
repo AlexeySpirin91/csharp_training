@@ -8,8 +8,8 @@ using NUnit.Framework;
 namespace addressbook_test
 {
     [TestFixture]
-    public class RemovalGroupTests:AuthTestBase
-	{
+    public class RemovalGroupTests : GroupTestBase
+    {
 		public RemovalGroupTests()
 		{
 		}
@@ -30,16 +30,20 @@ namespace addressbook_test
                 app.Navigator.GoToGroupsPage();
             }
 
-            List<Form> oldGroups = app.Groups.GetGroupList();
+            List<Form> oldGroups = Form.GetAll();
+            Form toBeRemoved = oldGroups[index];
 
-            app.Groups.RemovalGroup(index);
+            app.Groups.Remove(toBeRemoved);
 
-            List<Form> newGroups = app.Groups.GetGroupList();
+            List<Form> newGroups = Form.GetAll();
 
             oldGroups.RemoveAt(index);
-            oldGroups.Sort();
-            newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
+
+            foreach(Form form in newGroups)
+            {
+                Assert.AreNotEqual(form.Id, toBeRemoved.Id);
+            }
 
             app.Navigator.GoToHomePage();
         }
