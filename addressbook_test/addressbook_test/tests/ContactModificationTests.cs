@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace addressbook_test
 {
     [TestFixture]
-    public class ContactModificationTests : AuthTestBase
+    public class ContactModificationTests : ContactTestBase
     {
         public ContactModificationTests()
         {
@@ -16,8 +16,8 @@ namespace addressbook_test
         [Test]
         public void ContactModificationTest()
         {
-            int index = 1;
-            Contact newContact = new Contact("Alexey_new", "Spirin_new");
+            int index = 9;
+            Contact newContact = new Contact("Alexey_new_hoba", "Spirin_new_ololo");
             Contact contact = new Contact("Alexey_modif", "Spirin_modif");
 
             app.Navigator.GoToHomePage();
@@ -31,25 +31,17 @@ namespace addressbook_test
                 app.Navigator.GoToHomePage();
             }
 
-            List<Contact> oldContacts = app.Contacts.GetContactList();
-            app.Contacts
-                    .ModifyContact(index)
-                    .FillContactInfo(newContact.Firstname, newContact.Lastname)
-                    .ClickUpdate();
-
-
-            List<Contact> newContacts = app.Contacts.GetContactList();
+            List<Contact> oldContacts = Contact.GetAll();
+            Contact toBeModify = oldContacts[index];
+            app.Contacts.ModifyContact(toBeModify, newContact.Firstname, newContact.Lastname);
+            List<Contact> newContacts = Contact.GetAll();
 
             oldContacts[index].Firstname = newContact.Firstname;
             oldContacts[index].Lastname = newContact.Lastname;
-            oldContacts.Sort();
-            newContacts.Sort();
 
             Assert.AreEqual(oldContacts, newContacts);
 
             app.Navigator.GoToHomePage();
         }
     }
-
-
 }

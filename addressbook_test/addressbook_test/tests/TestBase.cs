@@ -9,7 +9,7 @@ namespace addressbook_test
 {
     public class TestBase
     {
-
+        public static bool PERFOM_LONG_UI_CHECKS = true;
         protected ApplicationManager app;
 
         [SetUp]

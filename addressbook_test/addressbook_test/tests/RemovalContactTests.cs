@@ -9,8 +9,8 @@ using NUnit.Framework;
 namespace addressbook_test
 {
     [TestFixture]
-    public class RemovalContactTests:AuthTestBase
-	{
+    public class RemovalContactTests: ContactTestBase
+    {
 		public RemovalContactTests()
 		{
 		}
@@ -32,17 +32,12 @@ namespace addressbook_test
                     .ClickEnter();
                 app.Navigator.GoToHomePage();
             }
-            List<Contact> oldContacts = app.Contacts.GetContactList();
-
-            app.Contacts
-                    .ChooseElement(index)
-                    .DeleteContact();
-
-            List<Contact> newContacts = app.Contacts.GetContactList();
+            List<Contact> oldContacts = Contact.GetAll();
+            Contact toBeRemoved = oldContacts[index];
+            app.Contacts.Remove(toBeRemoved);
+            List<Contact> newContacts = Contact.GetAll();
 
             oldContacts.RemoveAt(index);
-            oldContacts.Sort();
-            newContacts.Sort();
 
             Assert.AreEqual(oldContacts, newContacts);
 

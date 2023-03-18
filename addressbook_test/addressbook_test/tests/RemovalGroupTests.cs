@@ -32,9 +32,7 @@ namespace addressbook_test
 
             List<Form> oldGroups = Form.GetAll();
             Form toBeRemoved = oldGroups[index];
-
             app.Groups.Remove(toBeRemoved);
-
             List<Form> newGroups = Form.GetAll();
 
             oldGroups.RemoveAt(index);

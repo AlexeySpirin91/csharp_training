@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Xml.Linq;
+using Google.Protobuf.WellKnownTypes;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -49,10 +50,21 @@ namespace addressbook_test
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index+1) + "]")).Click();
             return this;
         }
+        public ContactHelper ChooseElement(string id)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='"+id+"'])")).Click();
+            return this;
+        }
 
         public ContactHelper ModifyContact(int index)
         {
             driver.FindElement(By.XPath("(//table[@id='maintable']/tbody//td//img[@title='Edit'])[" + (index+1) + "]")).Click();
+            return this;
+        }
+
+        public ContactHelper ModifyContact(string id)
+        {
+            driver.FindElement(By.XPath("(//input[@value='"+id+"']//ancestor::tr //a//img[@title='Edit'])")).Click();
             return this;
         }
 
@@ -207,8 +219,19 @@ namespace addressbook_test
 
             return info;
         }
+
+        public void Remove(Contact contact)
+        {
+            ChooseElement(contact.Id);
+            DeleteContact();
+        }
+
+        public void ModifyContact(Contact contact, string firstname, string lastname)
+        {
+            ModifyContact(contact.Id);
+            FillContactInfo(firstname, lastname);
+            ClickUpdate();
+        }
     }
-
-
 }
 

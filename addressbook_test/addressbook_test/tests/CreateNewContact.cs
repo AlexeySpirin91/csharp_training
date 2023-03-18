@@ -12,7 +12,7 @@ namespace addressbook_test
 {
 
     [TestFixture]
-    public class CreateContact : AuthTestBase
+    public class CreateContact : ContactTestBase
     {
 
         public static IEnumerable<Contact> RandomContactDataProvider()
@@ -44,18 +44,13 @@ namespace addressbook_test
         public void TheContactTest(Contact contact)
         {
 
-            List<Contact> oldContacts = app.Contacts.GetContactList();
+            List<Contact> oldContacts = Contact.GetAll();
             app.Navigator.GoToContactPage();
             app.Contacts
                 .FillContactInfo(contact.Firstname, contact.Lastname)
                 .ClickEnter();
-
-            
-            List<Contact> newContacts = app.Contacts.GetContactList();
-
+            List<Contact> newContacts = Contact.GetAll();
             oldContacts.Add(contact);
-            oldContacts.Sort();
-            newContacts.Sort();
 
             Assert.AreEqual(oldContacts, newContacts);
 

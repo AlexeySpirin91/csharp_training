@@ -14,12 +14,16 @@ namespace addressbook_test
 		[TearDown]
 		public void CompareGroupsUI_DB()
 		{
-			List<string> fromUI = app.Groups.GetGroupNameList();
-			List<string> fromDB = Form.GetAllNames();
+			if (PERFOM_LONG_UI_CHECKS)
+			{
+                List<string> fromUI = app.Groups.GetGroupNameList();
+                List<string> fromDB = Form.GetAllNames();
 
-			fromUI.Sort();
-			fromDB.Sort();
-			Assert.AreEqual(fromUI, fromDB);
+                fromUI.Sort();
+                fromDB.Sort();
+                Assert.AreEqual(fromUI, fromDB);
+            }
+
 		}
 	}
 }

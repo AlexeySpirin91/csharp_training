@@ -8,12 +8,12 @@ using NUnit.Framework;
 namespace addressbook_test
 {
     [TestFixture]
-    public class ContactInformationTests : AuthTestBase
+    public class ContactInformationTests : ContactTestBase
     {
         [Test]
         public void TestContactInformation()
         {
-            int index = 0;
+            int index = 1;
             app.Navigator.GoToContactPage();
             Contact fromTable = app.Contacts.GetContactInformationFromTable(index);
             Contact fromForm = app.Contacts.GetContactInformationFromForm(index);
