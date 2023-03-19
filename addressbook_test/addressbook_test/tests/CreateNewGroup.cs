@@ -71,7 +71,10 @@ namespace addressbook_test
         [Test]
         public void TestDBConnectivity()
         {
-           app.Contacts.RemoveContactToGroupTest("name1");
+            foreach (Contact contact in Contact.GetAll())
+            {
+                System.Console.Out.WriteLine(contact.Deprecated);
+            }
 
         }
 

@@ -225,6 +225,8 @@ namespace addressbook_test
         {
             ChooseElement(contact.Id);
             DeleteContact();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+                .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
         }
 
         public void ModifyContact(Contact contact, string firstname, string lastname)
@@ -265,7 +267,7 @@ namespace addressbook_test
             new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
         }
 
-        public void RemoveContactToGroup(Contact contact, Form form)
+        public void RemoveContactFromGroup(Contact contact, Form form)
         {
             manager.Navigator.GoToHomePage();
             SelectGroup(form.Name);
@@ -283,17 +285,6 @@ namespace addressbook_test
         public void SelectGroup(string name)
         {
             new SelectElement(driver.FindElement(By.Name("group"))).SelectByText(name);
-        }
-
-
-
-        public void RemoveContactToGroupTest(string name)
-        {
-            manager.Navigator.GoToHomePage();
-            SelectGroup(name);
-            CommitRemoveContactFromGroup();
-            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
-                .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
         }
     }
 }

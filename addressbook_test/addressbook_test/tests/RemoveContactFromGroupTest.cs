@@ -14,7 +14,7 @@ namespace addressbook_test
             List<Contact> oldList = form.GetContacts();
             Contact contact = oldList.First();
 
-            app.Contacts.RemoveContactToGroup(contact, form);
+            app.Contacts.RemoveContactFromGroup(contact, form);
 
             List<Contact> newList = form.GetContacts();
             oldList.Remove(contact);
