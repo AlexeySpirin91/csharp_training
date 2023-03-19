@@ -13,6 +13,8 @@ namespace addressbook_test
 		public ITable<Form> Forms { get { return this.GetTable<Form>(); } }
         public ITable<Contact> Contacts { get { return this.GetTable<Contact>(); } }
 
+        public ITable<GroupContactRelation> GCR { get { return this.GetTable<GroupContactRelation>(); } }
+
     }
 }
 

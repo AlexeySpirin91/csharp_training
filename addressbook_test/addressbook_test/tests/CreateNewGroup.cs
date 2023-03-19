@@ -71,15 +71,7 @@ namespace addressbook_test
         [Test]
         public void TestDBConnectivity()
         {
-            DateTime start = DateTime.Now;
-            List<Form> fromUi = app.Groups.GetGroupList();
-            DateTime end = DateTime.Now;
-            System.Console.Out.WriteLine(end.Subtract(start));
-
-            start = DateTime.Now;
-            List<Form> fromDb = Form.GetAll();
-            end = DateTime.Now;
-            System.Console.Out.WriteLine(end.Subtract(start));
+           app.Contacts.RemoveContactToGroupTest("name1");
 
         }
 
