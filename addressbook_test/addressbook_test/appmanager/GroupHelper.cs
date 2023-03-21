@@ -147,6 +147,18 @@ namespace addressbook_test
 
             return new List<string>(groupNameCache);
         }
+
+        public bool CheckGroupForAdding()
+        {
+            if (driver.Url == "http://localhost/addressbook/index.php"
+                && IsElementPresent(By.XPath("//select[@name='to_group']//option")))
+                return true;
+            return false;
+        }
+
+
+
+
     }
 
 
