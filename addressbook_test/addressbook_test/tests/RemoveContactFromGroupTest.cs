@@ -10,18 +10,43 @@ namespace addressbook_test
         [Test]
 		public void TestRemoveContactFromGroup()
 		{
-			Form form = Form.GetAll()[0];
-            List<Contact> oldList = form.GetContacts();
-            Contact contact = oldList.First();
+            List<Form> forms = Form.GetAll();
+            int count = 0;
+            foreach (Form form in forms)
+            {
+                List<Contact> oldList = form.GetContacts();
+                List<Contact> allContacts = Contact.GetAll();
+                List<Contact> allContactsInGroup = new List<Contact>();
 
-            app.Contacts.RemoveContactFromGroup(contact, form);
+                for (int i = 0; i < allContacts.Count(); i++)
+                {
+                    if (oldList.Contains(allContacts[i]))
+                    {
+                        allContactsInGroup.Add(allContacts[i]);
+                        count++;
+                    }
+                }
+                if (allContactsInGroup.Count() == 0) Console.WriteLine($"{form.Name}в этой группе нет контактов");
+                else
+                {
+                    Contact contact = oldList.First();
 
-            List<Contact> newList = form.GetContacts();
-            oldList.Remove(contact);
+                    app.Contacts.RemoveContactFromGroup(contact, form);
 
-            newList.Sort();
-            oldList.Sort();
-            Assert.AreEqual(oldList, newList);
+                    List<Contact> newList = form.GetContacts();
+                    oldList.Remove(contact);
+
+                    newList.Sort();
+                    oldList.Sort();
+                    Assert.AreEqual(oldList, newList);
+                    break;
+                }
+
+                if (count == 0)
+                {
+                    Console.WriteLine("ни в одной группе нет контактов");
+                }
+            }
         }
     }
 }

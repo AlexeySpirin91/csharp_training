@@ -38,20 +38,20 @@ namespace addressbook_test
             {
                 List<Contact> oldList = form.GetContacts();
                 List<Contact> allContacts = Contact.GetAll();
-                List<Contact> allContactsInGroup = new List<Contact>();
+                List<Contact> allContactsNotInGroup = new List<Contact>();
 
                 for (int i = 0; i < allContacts.Count(); i++)
                 {
                     if (!oldList.Contains(allContacts[i]))
                     {
-                        allContactsInGroup.Add(allContacts[i]);
+                        allContactsNotInGroup.Add(allContacts[i]);
                         count++;
                     }
                 }
-                if (allContactsInGroup.Count() == 0) Console.WriteLine("в эту группу добавлены все контакты");
+                if (allContactsNotInGroup.Count() == 0) Console.WriteLine($"{form.Name} в эту группу добавлены все контакты");
                 else
                 {
-                    Contact contact = allContactsInGroup.First();
+                    Contact contact = allContactsNotInGroup.First();
                     app.Contacts.AddContactToGroup(contact, form);
 
                     List<Contact> newList = form.GetContacts();
