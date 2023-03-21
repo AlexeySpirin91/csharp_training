@@ -1,5 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
+using static LinqToDB.Sql;
+
 namespace addressbook_test
 {
 	public class AddingContactToGroupTests : AuthTestBase
@@ -30,19 +32,47 @@ namespace addressbook_test
                 app.Navigator.GoToHomePage();
             }
 
-            Form form = Form.GetAll()[0];
-			List<Contact> oldList = form.GetContacts();
-            Contact contact = Contact.GetAll().Except(oldList).First();
+            List<Form> forms = Form.GetAll();
+            int count = 0;
+            foreach (Form form in forms)
+            {
+                List<Contact> oldList = form.GetContacts();
+                List<Contact> allContacts = Contact.GetAll();
+                List<Contact> allContactsInGroup = new List<Contact>();
 
-			app.Contacts.AddContactToGroup(contact,form);
+                for (int i = 0; i < allContacts.Count(); i++)
+                {
+                    if (!oldList.Contains(allContacts[i]))
+                    {
+                        allContactsInGroup.Add(allContacts[i]);
+                        count++;
+                    }
+                }
+                if (allContactsInGroup.Count() == 0) Console.WriteLine("в эту группу добавлены все контакты");
+                else
+                {
+                    Contact contact = allContactsInGroup.First();
+                    app.Contacts.AddContactToGroup(contact, form);
 
-            List<Contact> newList = form.GetContacts();
-			oldList.Add(contact);
+                    List<Contact> newList = form.GetContacts();
+                    oldList.Add(contact);
 
-			newList.Sort();
-			oldList.Sort();
+                    newList.Sort();
+                    oldList.Sort();
 
-			Assert.AreEqual(oldList, newList);
+                    Assert.AreEqual(oldList, newList);
+                    break;
+                }
+
+                if(count == 0)
+                {
+                    Console.WriteLine("Все контакты добавлены во все группы");
+                }
+            }
+
+            
+
+			
         }
 	}
 }
