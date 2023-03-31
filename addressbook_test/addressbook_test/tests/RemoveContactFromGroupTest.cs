@@ -2,7 +2,8 @@
 using NUnit.Framework;
 namespace addressbook_test
 {
-	public class RemoveContactFromGroupTest : AuthTestBase
+
+    public class RemoveContactFromGroupTest : AuthTestBase
     {
 		public RemoveContactFromGroupTest()
 		{
