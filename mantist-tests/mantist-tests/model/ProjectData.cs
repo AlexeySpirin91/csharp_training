@@ -2,7 +2,7 @@
 using LinqToDB.Mapping;
 using static LinqToDB.Sql;
 
-namespace mantist_tests
+namespace mantis_tests
 {
     [Table(Name = "mantis_project_table")]
     public class ProjectData:IEquatable<ProjectData>,IComparable<ProjectData>
@@ -35,7 +35,7 @@ namespace mantist_tests
 
         public static List<ProjectData> GetProjects()
         {
-            using (MantistDB db = new MantistDB())
+            using (MantisDB db = new MantisDB())
             {
                 return (from p in db.Projects select p).ToList();
             }

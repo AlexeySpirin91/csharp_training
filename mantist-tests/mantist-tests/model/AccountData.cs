@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace mantist_tests
+namespace mantis_tests
 {
 	public class AccountData
 	{

@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using static LinqToDB.Sql;
 
-namespace mantist_tests
+namespace mantis_tests
 {
 	[TestFixture]
 	public class ProjectCreateTests : TestBase
@@ -21,16 +21,14 @@ namespace mantist_tests
             ;
         }
 
-        [Test]
-		public void ProjectCreateTest()
+        [Test, TestCaseSource("RandomProjectDataProvider")]
+		public void ProjectCreateTest(ProjectData project)
 		{
 			AccountData account = new AccountData()
 			{
 				Login = "administrator",
 				Password = "root"
 			};
-
-			ProjectData project = new ProjectData() { Name = "Тест" };
 
             List<ProjectData> oldProjects = ProjectData.GetProjects();
 

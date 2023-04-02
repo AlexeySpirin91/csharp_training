@@ -8,7 +8,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using System.Reflection;
 
-namespace mantist_tests
+namespace mantis_tests
 {
     public class ApplicationManager
     {

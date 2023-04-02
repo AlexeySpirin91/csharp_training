@@ -5,7 +5,7 @@ using OpenQA.Selenium.DevTools;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace mantist_tests
+namespace mantis_tests
 {
 	public class LoginHelper:HelperBase
 	{
@@ -15,11 +15,20 @@ namespace mantist_tests
 
 		public void LoginUser(string login, string pass)
 		{
+            if (IsLoggedIn())
+            {
+                return;
+            }
 			Type(By.Name("username"), login);
             driver.FindElement(By.XPath("//input[@value='Вход']")).Click();
             Type(By.Name("password"), pass);
             driver.FindElement(By.XPath("//input[@value='Вход']")).Click();
         }
-	}
+
+        public bool IsLoggedIn()
+        {
+            return IsElementPresent(By.ClassName("user-info"));
+        }
+    }
 }
 

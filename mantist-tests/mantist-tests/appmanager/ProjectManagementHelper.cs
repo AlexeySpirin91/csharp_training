@@ -5,7 +5,7 @@ using OpenQA.Selenium.DevTools;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace mantist_tests
+namespace mantis_tests
 {
 	public class ProjectManagementHelper:HelperBase
 	{
@@ -31,6 +31,22 @@ namespace mantist_tests
 		{
 			driver.FindElement(locator).Click();
 		}
-	}
+
+        internal void DeleteProject(int index, int count)
+        {
+            if (count == 0)
+            {
+				CreateNewProject("From removal");
+            }
+            SelectProject(index);
+			ClickButton(By.CssSelector("[value='Удалить проект']"));
+            ClickButton(By.CssSelector("[value='Удалить проект']"));
+        }
+
+        private void SelectProject(int index)
+        {
+			driver.FindElement(By.XPath($"((//tbody)[1]/tr)["+(index+1)+"]/td/a")).Click();
+        }
+    }
 }
 
