@@ -33,7 +33,8 @@ namespace mantis_tests.tests
             {
                 oldProjects.RemoveAt(index);
             }
-            
+            oldProjects.Sort();
+            newProjects.Sort();
 
             Assert.AreEqual(oldProjects, newProjects);
         }

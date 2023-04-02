@@ -34,9 +34,15 @@ namespace mantis_tests
 
 			if (oldProjects.Contains(project))
 			{
-				Console.WriteLine("Такой проект уже существует");
-				return;
-			}
+				try
+				{
+					throw new Exception("Такой проект уже существует");
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine($"Ошибка: {e.Message}");
+				}
+            }
 
             app.Login.LoginUser(account.Login, account.Password);
 			app.Menu.GoToManagement();
